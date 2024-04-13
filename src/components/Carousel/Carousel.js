@@ -25,12 +25,13 @@ const Carousel = ({activities}) => {
     if(activities){
         carouselSlides = activities.activities.map((slide, index) => {
            return (
-            <Slide
-                actName={slide.name}
+                <Slide
                 key={slide.id}
+                actName={slide.name}
                 avail={slide.available}
-            >
-            </Slide>
+                id={slide.id}
+                >
+                </Slide>
             )
         })
     }

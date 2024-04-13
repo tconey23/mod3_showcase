@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   background-color: #282c34;
-  height: 90vh;
+  height: 100vh;
 }
 
 .App-logo {
@@ -15,16 +15,23 @@
   }
 }
 
+#loading{
+  position: absolute;
+  transform: translate(-3px, 10px);
+}
+
 .App-header {
   background-color: #282c34;
   height: 10vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
   border-bottom: 1px solid white;
+  align-content: center;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .App-link {
@@ -38,4 +45,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#messages{
+  font-size: 84%;
+  line-break: auto;
+  width: 500px;
 }

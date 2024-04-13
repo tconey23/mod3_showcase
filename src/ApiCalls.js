@@ -34,4 +34,22 @@ async function getActivities() {
         throw error
     }
 }
-export {postData, getActivities}
+
+async function getMessage() {
+  try {
+      const response = await fetch('http://localhost:3001/api/v1/affirmations');
+      if (!response.ok) {
+          throw new Error('Failed to load activities');
+      }
+      const data = await response.json();
+      // console.log(data);
+      return data;
+  } catch (error) {
+      console.error('Error fetching activities:', error);
+      throw error
+  }
+}
+
+getMessage()
+
+export {postData, getActivities, getMessage}
