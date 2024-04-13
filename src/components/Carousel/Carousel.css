@@ -1,0 +1,29 @@
+#carousel-parent {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    box-shadow: inset black -6px -5px 20px 1px;
+    border-radius: 30px;
+}
+
+#slide{
+    scale: 0.9;
+    position: relative;
+    width: 300px;
+    height: 200px;
+    opacity: 1;
+    transform: none;
+    background: aliceblue;
+}
+
+.slide-container{
+    width: 200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    margin-left: 170px;
+    margin-right: 170px;
+}

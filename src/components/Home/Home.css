@@ -1,0 +1,15 @@
+
+
+main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#carousel-container{
+    width: 50%;
+    height: 50%;
+    overflow: hidden;
+}
