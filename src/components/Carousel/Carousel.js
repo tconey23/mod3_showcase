@@ -8,17 +8,16 @@ const Carousel = ({activities}) => {
 
     const ref = useRef(null)
 
-    const controls = useDragControls()
+    // const controls = useDragControls()
 
     const startDrag = (event) => {
-        event.stopPropagation();
-        controls.start(event);
+        // event.stopPropagation();
+        // controls.start(event);
       };
 
     const handleWrapAround = () => {
-        console.log()
+        // console.log()
     };
-
 
     let carouselSlides
 
@@ -38,18 +37,18 @@ const Carousel = ({activities}) => {
 
 
   return (
-    <div id='carousel-parent' onPointerDown={startDrag} style={{ touchAction: "none" }}>
+    <div id='carousel-parent' style={{ touchAction: "none" }}>
         <motion.div                 
                 id='dragabble'
-                drag="x"
-                dragControls={controls}
-                onDrag={handleWrapAround}
+                // drag="x"
+                // dragControls={controls}
+                // onDrag={handleWrapAround}
                 style={{
                     display: "flex",
                     position: "relative",
                     userSelect: "none",
                     touchAction: "pan-x",
-                    transform: "translateX(99.4399px) translateY(0px) translateZ(0px)",
+                    // transform: "translateX(99.4399px) translateY(0px) translateZ(0px)",
                     marginTop: "25px",
                     width: "max-content",
                 }}

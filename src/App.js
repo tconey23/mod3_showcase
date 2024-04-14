@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes, useParams} from 'react-router-dom';
 import { postData, getActivities, getMessage } from './ApiCalls';
 import { act } from 'react-dom/test-utils';
 import { motion, animate } from "framer-motion";
+import {Link} from 'react-router-dom'
 
 function App() {
 
@@ -54,6 +55,7 @@ return (
   <BrowserRouter>
     <div className="App">
       <header className="App-header">
+        <Link to='/Home' >Home</Link>
         <motion.div id='messages'
                       initial={{ opacity: 1 }}
                       animate={{ opacity: [1, 0, 1] }}
@@ -77,6 +79,7 @@ return (
               {...animationProps}
             />
           </motion.svg>
+          <Link to='/Account' >Account</Link>
       </header>
       <Routes>
         <Route path="/home" element={<Home activities={activities} />} />
