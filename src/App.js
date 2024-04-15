@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Home from './components/Home/Home';
 import Fidgets from './components/Fidgets/Fidgets'
+import Sandbox from './components/Sandbox/Sandbox'
 import {useState, useEffect} from 'react'
 import { BrowserRouter, Route, Routes, useParams} from 'react-router-dom';
 import { postData, getActivities, getMessage } from './ApiCalls';
@@ -84,6 +85,7 @@ return (
       <Routes>
         <Route path="/home" element={<Home activities={activities} />} />
         <Route path="/fidgets" checker={'checker'} element={<Fidgets />} />
+        <Route path="/sandbox" element={<Sandbox />}/>
       </Routes>
     </div>
   </BrowserRouter>
