@@ -1,13 +1,35 @@
 import './Slides.css'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import propFidgetPNG from '../../assets/g396.png'
 import './Slides.css'
+import bubbleButton from './bubbleButton.svg'
+import Bubble from './bubbleButton'
 
-function Slides({id, actName, avail}) {
+function Slides({id, actName, avail, elem, path}) {
 
-    const [hover, setHover] = useState(false);
+    const durations = [2.5, 3, 3.2, 2]
+    const [duration, setDuration] = useState(durations[0]);
+
+    const delays = [0.1, 0, 0.5, 0.9]
+    const [delay, setDelay] = useState(delays[0]);
+
+    useEffect(() => {
+        // Function to select a random duration
+        const pickRandomDuration = () => {
+            const randomIndex = Math.floor(Math.random() * durations.length);
+            return durations[randomIndex];
+        };
+        const pickRandomDelay = () => {
+            const randomIndex = Math.floor(Math.random() * delays.length);
+            return delays[randomIndex];
+        };
+
+        // Set the random duration on component mount
+        setDuration(pickRandomDuration());
+        setDelay(pickRandomDelay());
+    }, []);  // Empty dependency array ensures this effect runs only once on mount
 
     const status = () => {
         if(avail){
@@ -19,42 +41,21 @@ function Slides({id, actName, avail}) {
 
     return (
         <motion.div
-            id="slide"
-            initial={{
-                scale: 1,
-                rotate: 0,
-                width: "200px"
-            }}
-            animate={{
-                scale: hover ? 1.1 : 0.9,
-                cursor: hover ? "pointer" : "none",
-                boxShadow: '(black 8px 9px 20px)',
-                transition: { duration: 0.5 }
-            }}
-            onHoverStart={() => setHover(true)}
-            onHoverEnd={() => setHover(false)}
-            style={{
-                backgroundColor: "#ccc",
-                width: "300px",
-                height: "200px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                margin: "20px",
-                boxShadow: '(black 4px 5px 20px)'
-            }}
+        id='bubble'
+        animate={{
+            y: ["0%", "4%", "0%"]
+          }}
+          transition={{ 
+            duration: duration, 
+            ease: "easeInOut",
+            repeat: Infinity, 
+            repeatType: "loop",
+            delay: delay 
+        }}
         >
-            <div id="innerContainer"
-            >
-                <h3>{actName}
-                <NavLink to={`/${actName}`}>
-                    <p>Status: {status()}</p>
-                </NavLink>  
-                </h3>
-
-                {actName === 'fidgets' && <img src={propFidgetPNG} width="100px" height="100px" />}
-                
-            </div>
+            <Bubble />
+            <Link id="linkToPage" to={path}/>
+            <h3 id='slideName'>{actName}</h3>
         </motion.div>
     )
 

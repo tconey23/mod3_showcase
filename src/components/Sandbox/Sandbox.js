@@ -8,7 +8,6 @@ const Sandbox = () => {
     const { world } = engine;
 
     useEffect(() => {
-        // Get the dimensions of the window
         const windowWidth = window.innerWidth;
         const windowHeight = window.innerHeight - 120;
 
@@ -19,19 +18,21 @@ const Sandbox = () => {
                 width: windowWidth,
                 height: windowHeight,
                 wireframes: false,
-                background: 'radial-gradient(ellipse at top, #4c21e6, black), radial-gradient(ellipse at bottom, #9f0c43fa, #420000);'
+                background: 'f0f8ff00'
             }
         });
 
-        // Add renderer to the DOM
+        Matter.Render.stop(render);
+        Matter.World.clear(world);
+        Matter.Engine.clear(engine);
         Matter.Render.run(render);
 
-        // Calculate circle properties based on window dimensions
+
         const circleRadius = Math.min(windowWidth, windowHeight) * 0.2; // Adjust this value as needed
         const circleCenterX = windowWidth / 2;
         const circleCenterY = windowHeight / 2;
-        const numElements = 3000; // Increase this value for denser filling
-        const elementRadius = 2.5; // Adjust this value as needed
+        const numElements = 1000; // Increase this value for denser filling
+        const elementRadius = 4; // Adjust this value as needed
 
         // Loop through each element
         for (let i = 0; i < numElements; i++) {
@@ -40,7 +41,8 @@ const Sandbox = () => {
             const randomRadius = Math.random() * circleRadius;
             const x = circleCenterX + randomRadius * Math.cos(randomAngle);
             const y = circleCenterY + randomRadius * Math.sin(randomAngle);
-            const circle = Matter.Bodies.circle(x, y, elementRadius, { restitution: 1 });
+            const circle = Matter.Bodies.circle(x, y, elementRadius, { restitution: 1, density: 2  });
+            circle.label = 'circle'
             Matter.World.add(world, circle);
         }
 
@@ -56,7 +58,7 @@ const Sandbox = () => {
             mouseConstraint = Matter.MouseConstraint.create(engine, {
                 mouse: mouse,
                 constraint: {
-                    stiffness: 0.2,
+                    stiffness: 1,
                     render: {
                         visible: false
                     }
@@ -72,10 +74,10 @@ const Sandbox = () => {
         const bounds = Matter.Bodies.rectangle(windowWidth / 2, windowHeight / 2, windowWidth + 2 * wallThickness, windowHeight + 2 * wallThickness, {
             isStatic: true
         });
-        const wallLeft = Matter.Bodies.rectangle(0, windowHeight / 2, wallThickness, windowHeight, { isStatic: true });
-        const wallRight = Matter.Bodies.rectangle(windowWidth, windowHeight / 2, wallThickness, windowHeight, { isStatic: true });
-        const wallTop = Matter.Bodies.rectangle(windowWidth / 2, 0, windowWidth, wallThickness, { isStatic: true });
-        const wallBottom = Matter.Bodies.rectangle(0, windowHeight, windowWidth * 2, wallThickness, { isStatic: true }); // Adjusted position
+        const wallLeft = Matter.Bodies.rectangle(0, windowHeight / 2, wallThickness, windowHeight, { isStatic: true, fillStyle: 'f0f8ff00' });
+        const wallRight = Matter.Bodies.rectangle(windowWidth, windowHeight / 2, wallThickness, windowHeight, { isStatic: true, fillStyle: 'f0f8ff00'  });
+        const wallTop = Matter.Bodies.rectangle(windowWidth / 2, 0, windowWidth, wallThickness, { isStatic: true, fillStyle: 'f0f8ff00' });
+        const wallBottom = Matter.Bodies.rectangle(0, windowHeight, windowWidth * 2, wallThickness, { isStatic: true, fillStyle: 'f0f8ff00'  });
         Matter.World.add(world, [wallLeft, wallRight, wallTop, wallBottom]);
 
         engine.world.gravity.y = 0;
@@ -83,11 +85,32 @@ const Sandbox = () => {
         // Set colors for grains
         const colorArray = ['#05dff7', '#093285', '#565be3', '#56e3c4'];
 
-        const circles = world.bodies.filter((body) => body.label === "Circle Body")
+        const circles = world.bodies.filter((body) => body.label === "circle")
         circles.forEach(body => {
             body.render.fillStyle = Matter.Common.choose(colorArray);
+            body.render.lineWidth = '2'
         });
-        console.log(circles)
+
+        Matter.Events.on(engine, 'collisionStart', function(event) {
+            event.pairs.forEach(pair => {
+                console.log(pair.bodyB.label.includes('Circle'))
+                if (pair.bodyB.label === 'circle') {
+                    pair.bodyA.render.fillStyle = '#FF0000'
+                    pair.bodyB.render.fillStyle = '#FF0000'
+                    setTimeout(() => {
+                        pair.bodyA.render.fillStyle = Matter.Common.choose(colorArray)
+                        pair.bodyB.render.fillStyle = Matter.Common.choose(colorArray)
+                    }, 10);
+                }
+            });
+        });
+
+        Matter.Events.on(engine, 'collisionEnd', function(event) {
+            event.pairs.forEach(pair => {
+                    pair.bodyA.render.fillStyle = Matter.Common.choose(colorArray)
+                    pair.bodyB.render.fillStyle = Matter.Common.choose(colorArray)
+            });
+        });
 
         // Run the engine
         Matter.Runner.run(engine);
@@ -100,7 +123,12 @@ const Sandbox = () => {
         };
     }, []);
 
-    return <canvas ref={canvasRef} />;
+
+    return (
+        <div>
+            <canvas ref={canvasRef} />
+        </div>
+    )
 };
 
 export default Sandbox;
