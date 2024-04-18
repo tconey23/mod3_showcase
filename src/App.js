@@ -12,7 +12,7 @@ import ThoughtBox from './components/ThoughtBox/ThoughtBox';
 function App() {
 
   const [activities, setActivities] = useState()
-  const [fetchState, setFetchState] = useState(false)
+  const [fetchState, setFetchState] = useState(true)
   const [retriggerFav, resetFavList] = useState(false)
   const [favorites, setFavorites] = useState()
   const [userData, setUsers] = useState()
@@ -52,10 +52,6 @@ const favHandler = () => {
   resetFavList(true)
 }
 
-const toggleApiCalls = () => {
-  setFetchState(true)
-}
-
 const handleUserChange = (user) => {
   setSelectedUser(user)
 }
@@ -66,7 +62,7 @@ return (
   <BrowserRouter>
     <div className="App">
       <header className="App-header">
-        <Link to='/home' onClick={toggleApiCalls}>Home</Link>
+        <Link to='/home'>Home</Link>
           <Link to='/Account' >Account</Link>
       </header>
       <Routes>

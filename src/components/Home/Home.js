@@ -1,7 +1,7 @@
 import './Home.css'
 import React, { useState, useEffect } from 'react';
 import Carousel from '../Carousel/Carousel'
-import { motion, animate } from "framer-motion"
+import { motion } from "framer-motion"
 import { getMessage, postFavoriteQuote } from '../../ApiCalls';
 import FavoriteSVG from '../../assets/gradient_heart';
 import Favorites from '../Favorites/Favorites';
@@ -9,12 +9,10 @@ import Favorites from '../Favorites/Favorites';
 
 function Home({activities, favorites, favHandler, selectedUser}) {
   const [affirmations, setAffirmations] = useState()
-  const [fetchState, setFetchState] = useState(true)
 
   console.log(selectedUser)
 
   useEffect(() => {
-    if(fetchState){
     const fetchData = async () => {
       const response = await getMessage();
       setAffirmations(response);
@@ -22,22 +20,14 @@ function Home({activities, favorites, favHandler, selectedUser}) {
     fetchData(); 
     const timerId = setInterval(fetchData, 30000);
     return () => clearInterval(timerId)
-  }
-  }, [fetchState]);
 
-  const toggleApiCalls = () => {
-    setFetchState(true)
-  }
+  }, []);
 
   const addFavoriteMessage = async () => {
     const userId = 1
     await postFavoriteQuote(userId, affirmations)
     favHandler()
   }
-
-  useEffect(() => {
-    toggleApiCalls()
-  }, [])
 
       return (
         <main>
@@ -53,7 +43,7 @@ function Home({activities, favorites, favHandler, selectedUser}) {
                           repeatDelay: 30
                       }}>
                         <FavoriteSVG id="favHeart" onClick={addFavoriteMessage}/>
-                        {affirmations}
+                        <p>{affirmations}</p>
           </motion.div>
           <div id='favQuotes'>
               <Favorites favorites={favorites}/>

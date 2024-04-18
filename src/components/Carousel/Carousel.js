@@ -1,6 +1,4 @@
-import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useInView } from "react-intersection-observer";
 import Slide from '../Slides/Slides';
 import './Carousel.css'
 
