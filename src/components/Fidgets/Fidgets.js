@@ -49,6 +49,7 @@ function Fidgets() {
         <div id="dropdown">
             <div>
             <motion.button
+            id='fidgetMenu'
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
@@ -56,6 +57,7 @@ function Fidgets() {
                 Fidgets
             </motion.button>
             <motion.button
+            id='fidgetMenu'
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 // onClick={resetFidget}

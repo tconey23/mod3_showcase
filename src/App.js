@@ -99,8 +99,8 @@ return (
         <Routes>
           <Route path='/' element={<ThoughtBox onUserChange={handleUserChange} userData={userData} />} />
           <Route path="/home" element={<Home selectedUser={selectedUser} favHandler={favHandler} favorites={favorites} activities={activities} />} />
-          <Route path="/fidgets" checker={'checker'} element={<Fidgets />} />
-          <Route path="/sandbox" element={<Sandbox />} />
+          {/* <Route path="/fidgets" checker={'checker'} element={<Fidgets />} />
+          <Route path="/sandbox" element={<Sandbox />} /> */}
         </Routes>
       </div>
     </BrowserRouter>

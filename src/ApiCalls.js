@@ -65,26 +65,65 @@ async function getMessage() {
 }
 
 
-const openai = new OpenAI({
-  apiKey: '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',
-  dangerouslyAllowBrowser: true
-});
+// const openai = new OpenAI({
+//   apiKey: REACT_APP_OPENAI_API_KEY,
+//   dangerouslyAllowBrowser: false
+// });
 
-async function main() {
-  const completion = await openai.chat.completions.create({
-    messages: [
-        {"role": "user", "content": "This is an application used by children under the age of 10 years old"},
-        {"role": "user", "content": "All responses must be appropriate for children"},
-        {"role": "user", "content": "All responses must be positive in nature"},
-        {"role": "user", "content": "Generate a positive affirmation for a child"}
-      ],
-    model: "gpt-3.5-turbo",
-  })
-  .catch(err => console.log(err))
-  //console.log(completion.choices);
-}
+// async function main() {
+//   const completion = await openai.chat.completions.create({
+//     messages: [
+//         {"role": "user", "content": "This is an application used by children under the age of 10 years old"},
+//         {"role": "user", "content": "All responses must be appropriate for children"},
+//         {"role": "user", "content": "All responses must be positive in nature"},
+//         {"role": "user", "content": "Generate a positive affirmation for a child"}
+//       ],
+//     model: "gpt-3.5-turbo",
+//   })
+//   .catch(err => console.log(err))
+//   //console.log(completion.choices);
+// }
 
-// main()
+// // main()
+
+
+
+export const getResponse = async () => {
+
+  const messages= [
+    {"role": "user", "content": "This is an application used by children under the age of 10 years old"},
+    {"role": "user", "content": "All responses must be appropriate for children"},
+    {"role": "user", "content": "All responses must be positive in nature"},
+    {"role": "user", "content": "Generate a positive affirmation for a child"}
+  ]
+  try {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
+      },
+      body: JSON.stringify({
+        "model": "gpt-3.5-turbo",
+        "messages": messages,
+        "max_tokens": 500,
+        "top_p": 1,
+        "temperature": 1
+      })
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log('apiCalls', data); // Use the stored data for logging or other purposes
+    console.log(data)
+    return data;
+    
+  } catch (error) {
+    console.error('Error calling OpenAI API:', error);
+    return null;
+  }
+};
 
 const postThought = async (userId, thought) => {
   const patchData = thought

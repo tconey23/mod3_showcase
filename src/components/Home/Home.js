@@ -6,10 +6,22 @@ import { getMessage, postFavoriteQuote } from '../../ApiCalls';
 import FavoriteSVG from '../../assets/gradient_heart';
 import Favorites from '../Favorites/Favorites';
 import Error from '../Error/Error';
+import Fidgets from '../Fidgets/Fidgets';
+import Sandbox from '../Sandbox/Sandbox';
 
 
 function Home({activities, favorites, favHandler, selectedUser}) {
   const [affirmations, setAffirmations] = useState()
+  const [component, renderComponent] = useState([])
+
+  useEffect(() => {
+    const rendComps = ['sandbox']
+    const selectComponent = () => {
+      renderComponent(rendComps)
+    }  
+    selectComponent()
+  }, [])
+
 
   useEffect(() => {
     if(selectedUser){
@@ -55,9 +67,12 @@ function Home({activities, favorites, favHandler, selectedUser}) {
             ) : (
               <Error errorType={'login_lost'}/>
             )}
+            {component.includes('carousel') && 
             <div id='carousel-container'>
               <Carousel activities={activities} />
-            </div>
+            </div>}
+            {component.includes('fidget') && <Fidgets />}
+            {component.includes('sandbox') && <Sandbox />}
           </main>
       );
 }
