@@ -1,9 +1,19 @@
 .App {
   text-align: center;
-  background-color: #282c34;
+  background-color: #1e1e1e;
+  background-image: url('./assets/waves.svg');
   height: 100vh;
+  overflow: visible;
+  background-repeat: no-repeat;
+  background-size: cover;
   overflow: hidden;
+  background-blend-mode: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -23,17 +33,23 @@
 }
 
 .App-header {
-  background-color: #282c34;
   height: 10vh;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   font-size: calc(10px + 2vmin);
   color: white;
-  border-bottom: 1px solid white;
   align-content: center;
   flex-wrap: wrap;
   align-items: center;
+  width: 100%;
+  background: #0000009c;
+  box-shadow: black 0 0 20px 5px;
+  margin-bottom: 30px;
+  a{
+    color: white;
+    font-size: 20px
+  }
 }
 
 .App-link {

@@ -1,9 +1,0 @@
-
-
-function Activities () {
-
-    return(
-        <>
-        </>
-    )
-}

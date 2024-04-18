@@ -1,7 +1,19 @@
 #fidgetComponent{
     overflow: hidden;
     height: 100vh;
-    width: 100vw
+    width: 100vw;
+    div{
+        height: 80%;
+    }
+}
+
+#fidgetMenu {
+    transform: none;
+    border-radius: 6px;
+    margin: 0px 10px;
+    background: rgba(144, 97, 255, 0.33);
+    height: 30px;
+    width: 80px;
 }
 
 #menu {
@@ -23,4 +35,8 @@
         width: 91px;
         height: 91px;
     }
+}
+
+button{
+
 }

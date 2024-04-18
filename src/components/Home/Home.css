@@ -3,9 +3,10 @@
 main{
     display: flex;
     flex-direction: row;
+    width: 100%;
     flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-evenly;
+    align-items: flex-start;
 }
 
 #carousel-container{
@@ -14,4 +15,74 @@ main{
     flex-wrap: nowrap;
     justify-content: center;
     align-items: flex-start;
+    width: 70%;
+}
+
+aside{
+    width: 30%;
+    height: 85vh;
+    background: #00000087;
+    box-shadow: black 0 0 20px 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    justify-content: flex-start;
+    align-items: center;
+    #currentUser{
+        color:white;
+        font-size: 20px;
+    }
+    #messages{
+        font-size: 20px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        text-wrap: balance;
+        height: 25px;
+        margin-bottom: 50px;
+        padding: 2px 0px;
+        width: 100%;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        #favHeart{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            align-self: flex-end;
+            z-index: 10;
+        }
+    }
+
+    #favQuotes{
+        margin-top: 80px;
+        overflow: auto;
+        height: 75%;
+    #favoriteQuotes{
+        overflow-y: overlay;
+        overflow-x: hidden;
+        div{
+            color: white;
+            text-wrap: balance;
+            margin: 15px 0px;
+            padding: 2px 0px;
+            &:hover{
+                scale: 1.05;
+            }
+        }
+    }
+}
+}
+
+#errorHandler {
+    width: 80%;
+    height: 60vh;
+    background: #0000009c;
+    box-shadow: black 0 0 20px 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    z-index: 20;
 }

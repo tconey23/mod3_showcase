@@ -11,10 +11,10 @@ export default function PropFidget() {
             if (ref.current) {
                 const element = ref.current.getBoundingClientRect();
                 setConstraints({
-                    top: 0 - element.top,
-                    left: 0 - element.left,
-                    right: window.innerWidth - element.right,
-                    bottom: window.innerHeight - element.bottom
+                    top: (window.innerHeight * 0.20) - (element.top),
+                    left: (window.innerWidth * 0.30) - (element.left),
+                    right: (window.innerWidth) - element.right,
+                    bottom: (window.innerHeight) - element.bottom
                 });
             }
         };
@@ -46,7 +46,7 @@ export default function PropFidget() {
             dragConstraints={constraints}
             animate={controls}
             onClick={handleSpin}
-            filter="drop-shadow(2px 4px 6px rgb(1, 1, 1))"
+            filter="drop-shadow(0px 0px 20px rgb(1, 1, 1))"
             width="250px"
             height="250px"viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
  <defs>
