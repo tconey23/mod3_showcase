@@ -15,7 +15,6 @@ function postData() {
       return response.json();
     })
     .then(data => {
-      //console.log('Data received:', data);
     })
     .catch(error => {
       console.error('There was a problem with your fetch operation:', error);
@@ -64,30 +63,6 @@ async function getMessage() {
 }
 }
 
-
-// const openai = new OpenAI({
-//   apiKey: REACT_APP_OPENAI_API_KEY,
-//   dangerouslyAllowBrowser: false
-// });
-
-// async function main() {
-//   const completion = await openai.chat.completions.create({
-//     messages: [
-//         {"role": "user", "content": "This is an application used by children under the age of 10 years old"},
-//         {"role": "user", "content": "All responses must be appropriate for children"},
-//         {"role": "user", "content": "All responses must be positive in nature"},
-//         {"role": "user", "content": "Generate a positive affirmation for a child"}
-//       ],
-//     model: "gpt-3.5-turbo",
-//   })
-//   .catch(err => console.log(err))
-//   //console.log(completion.choices);
-// }
-
-// // main()
-
-
-
 export const getResponse = async () => {
 
   const messages= [
@@ -115,7 +90,7 @@ export const getResponse = async () => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    console.log('apiCalls', data); // Use the stored data for logging or other purposes
+    console.log('apiCalls', data);
     console.log(data)
     return data;
     
@@ -223,5 +198,3 @@ const postActiveUser = async (user) => {
 getUsers()
 
 export {postData, getActivities, getMessage, getFav, postThought, postFavoriteQuote, getUsers, postActiveUser}
-
-//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
