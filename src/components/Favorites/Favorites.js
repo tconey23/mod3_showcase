@@ -4,7 +4,9 @@ const Favorites = ({favorites, selectedUser}) => {
 
     let favoriteQuotes
 
-    if(favorites) {
+    console.log(favorites.id)
+
+    if(favorites.id) {
         favoriteQuotes = favorites['favorite quotes'].map((fav, index) => {
             return (
                 <div

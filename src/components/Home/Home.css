@@ -72,3 +72,17 @@ aside{
     }
 }
 }
+
+#errorHandler {
+    width: 80%;
+    height: 60vh;
+    background: #0000009c;
+    box-shadow: black 0 0 20px 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    z-index: 20;
+}

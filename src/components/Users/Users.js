@@ -1,25 +1,27 @@
+import { useGlobalProp } from '../../App';
 
+const Users = ({onClick}) => {
+    let userList;
 
-const Users = (userData) => {
+    const { onUserChange, userData } = useGlobalProp()
 
-    let userList
+    //console.log(userData)
 
-    if(userData.userData){
-        userList = userData.userData.map((user, index) => {
-            return (
-                <option key={index} id={user.id} value={user.name}>{user.name}</option>
-            )
-        })
+    if (userData && userData.length > 0) {
+        userList = userData.map((user, index) => (
+            <div className="dropdown-item" key={index} id={user.id} value={user.id} onClick={() => onClick(user)}>
+                {user.name}
+            </div>
+        ));
     } else {
-        // console.error("userData is undefined");
+        // Handle case when userData is undefined or empty
     }
     
     return (
-
         <>
             {userList}
         </>
-    )
+    );
 }
 
-export default Users
+export default Users;
