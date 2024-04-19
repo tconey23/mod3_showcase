@@ -6,7 +6,7 @@ import Login from "../Login/Login";
 import './Error.css'
 
 const Error = ({errorType}) => {
-  console.log(errorType)
+
 
     return (
       <div id='errorHandler'>

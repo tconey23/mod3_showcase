@@ -1,11 +1,11 @@
-import { useGlobalProp } from '../../App';
+import { useGlobalProp } from '../../index';
 
 const Users = ({onClick}) => {
     let userList;
 
     const { onUserChange, userData } = useGlobalProp()
 
-    //console.log(userData)
+    console.log(userData)
 
     if (userData && userData.length > 0) {
         userList = userData.map((user, index) => (

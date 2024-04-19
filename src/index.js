@@ -1,18 +1,65 @@
-import React from 'react';
-import ReactDOM from 'react-dom'; // Corrected import statement
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { getUsers } from './ApiCalls';  // Ensure you have this import if you're using it
 
+const GlobalPropContext = createContext();
+
+const GlobalPropProvider = ({ children }) => {
+  const [userData, setUsers] = useState();
+  const [selectedUser, setSelectedUser] = useState();
+  const [userId, setUserId] = useState('');
+  const [favorites, setFavorites] = useState();
+  const [activities, setActivities] = useState();
+  const [retriggerFav, resetFavList] = useState(false);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const userList = await getUsers();
+      console.log(userList);
+      setUsers(userList);
+    };
+    fetchUsers();
+  }, []);
+
+  const handleUserChange = (user) => {
+    const userParts = user.split(',');
+    setUserId(userParts[0]);
+    setSelectedUser(userParts[1]);
+  };
+
+  const globalPropValue = {
+    favorites,
+    setFavorites,
+    selectedUser,
+    setSelectedUser,
+    userData,
+    setUsers,
+    userId,
+    setUserId,
+    activities,
+    setActivities,
+    resetFavList,
+    retriggerFav,
+    handleUserChange
+  };
+
+  return (
+    <GlobalPropContext.Provider value={globalPropValue}>
+      {children}
+    </GlobalPropContext.Provider>
+  );
+};
+
+export const useGlobalProp = () => useContext(GlobalPropContext);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <GlobalPropProvider>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </GlobalPropProvider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
