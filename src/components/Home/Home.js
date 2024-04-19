@@ -1,5 +1,6 @@
 import './Home.css'
 import React, { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 import Carousel from '../Carousel/Carousel'
 import { motion } from "framer-motion"
 import { getMessage, postFavoriteQuote } from '../../ApiCalls';
@@ -12,10 +13,10 @@ import Sandbox from '../Sandbox/Sandbox';
 
 function Home({activities, favorites, favHandler, selectedUser}) {
   const [affirmations, setAffirmations] = useState()
-  const [component, renderComponent] = useState([])
+  const [component, renderComponent] = useState()
+  const rendComps = 'carousel'
 
   useEffect(() => {
-    const rendComps = ['sandbox']
     const selectComponent = () => {
       renderComponent(rendComps)
     }  
@@ -67,12 +68,7 @@ function Home({activities, favorites, favHandler, selectedUser}) {
             ) : (
               <Error errorType={'login_lost'}/>
             )}
-            {component.includes('carousel') && 
-            <div id='carousel-container'>
-              <Carousel activities={activities} />
-            </div>}
-            {component.includes('fidget') && <Fidgets />}
-            {component.includes('sandbox') && <Sandbox />}
+            <Outlet />
           </main>
       );
 }
