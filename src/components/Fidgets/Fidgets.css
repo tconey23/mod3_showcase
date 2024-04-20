@@ -1,6 +1,6 @@
 #fidgetComponent{
     overflow: hidden;
-    height: 100vh;
+    height: 85vh;
     width: 100vw;
     div{
         height: 80%;
@@ -35,8 +35,4 @@
         width: 91px;
         height: 91px;
     }
-}
-
-button{
-
 }

@@ -6,6 +6,9 @@ import ThoughtBox from './components/ThoughtBox/ThoughtBox';
 import './App.css'
 import { getActivities, getFav, postActiveUser } from './ApiCalls';
 import { useGlobalProp } from './index';
+import Fidgets from './components/Fidgets/Fidgets';
+import Sandbox from './components/Sandbox/Sandbox';
+import Carousel from './components/Carousel/Carousel';
 
 function App() {
 
@@ -61,7 +64,15 @@ return (
       </header>
       <Routes>
         <Route path='/' element={<ThoughtBox />} />
-        <Route path="/home" element={<Home selectedUser={selectedUser} favHandler={favHandler} favorites={favorites} activities={activities} />} />
+        <Route path="/home" 
+          element={<Home selectedUser={selectedUser} 
+          favHandler={favHandler} 
+          favorites={favorites} 
+          activities={activities}/>}>
+            <Route path='' element={<Carousel />}></Route>
+            <Route path='fidgets' element={<Fidgets />}></Route>
+            <Route path='sandbox' element={<Sandbox />}></Route>
+          </Route>
       </Routes>
     </div>
   </BrowserRouter>
