@@ -1,9 +1,9 @@
 import './Home.css'
 import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { motion } from "framer-motion"
-import { postFavoriteQuote } from '../../ApiCalls';
+import { postFavoriteQuote, getMessage } from '../../ApiCalls';
 import FavoriteSVG from '../../assets/gradient_heart';
+import RefreshSVG from '../../assets/refresh'
 import Favorites from '../Favorites/Favorites';
 import Error from '../Error/Error';
 import { useGlobalProp } from '../../index';
@@ -14,7 +14,7 @@ function Home({activities, favorites, favHandler, selectedUser}) {
   const rendComps = 'carousel'
 
   let userName, userId
-  const { affirmation } = useGlobalProp()
+  const { affirmation, setAffirmation } = useGlobalProp()
 
   useEffect(() =>  {
     const selectComponent = () =>  {
@@ -22,6 +22,12 @@ function Home({activities, favorites, favHandler, selectedUser}) {
     }  
     selectComponent()
   }, [])
+
+  const refreshQuote = async () => {
+    const message = await getMessage()
+    const content = message.choices[0].message.content
+    setAffirmation(content)
+  }
 
   
  if(selectedUser){
@@ -31,8 +37,8 @@ function Home({activities, favorites, favHandler, selectedUser}) {
 
 
   const addFavoriteMessage = async () =>  {
-    
     await postFavoriteQuote(userId, affirmation)
+    refreshQuote()
     favHandler()
   }
 
@@ -40,21 +46,12 @@ function Home({activities, favorites, favHandler, selectedUser}) {
           <main>
             {selectedUser ? (
               <aside>
-                <p id='currentUser'>{userName}</p>
-                <motion.div
+                <p id='currentUser'>{userName}<RefreshSVG onClick={refreshQuote}/></p>
+                <div
                   id='messages'
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{
-                    duration: 0.5,
-                    repeat: Infinity, 
-                    repeatType: "reverse", 
-                    repeatDelay: 30
-                  }}
                 >
-                  
-                  {affirmation && <div><p>{affirmation}</p><FavoriteSVG id="favHeart" onClick={addFavoriteMessage}/></div>}
-                </motion.div>
+                  {affirmation && <div id='messageText'><FavoriteSVG id="favHeart" onClick={addFavoriteMessage}/>{affirmation}</div>}
+                </div>
                 <div id='favQuotes'>
                   <Favorites favorites={favorites}/>
                 </div>

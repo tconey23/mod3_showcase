@@ -34,6 +34,7 @@ const getMessage = async () =>  {
     {"role": "user", "content": "This is an application used by children under the age of 10 years old"},
     {"role": "user", "content": "All responses must be appropriate for children"},
     {"role": "user", "content": "All responses must be positive in nature"},
+    {"role": "user", "content": "Don't include any graphics"},
     {"role": "user", "content": "Generate a positive affirmation for a child"}
   ]
   try {
