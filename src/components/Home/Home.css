@@ -29,8 +29,9 @@ aside{
     justify-content: flex-start;
     align-items: center;
     #currentUser{
-        color:white;
+        color: white;
         font-size: 20px;
+        margin-block-end: auto;
     }
     #messages{
         font-size: 20px;
@@ -50,9 +51,12 @@ aside{
             margin-bottom: 10px;
             align-self: flex-end;
             z-index: 10;
-            scale: 3;
+            scale: 1;
+            position: relative;
+            top: -82px;
+            left: 146px;
             &:hover{
-                scale: 3.15;
+                scale: 1.10;
                 cursor: pointer;
             }
         }

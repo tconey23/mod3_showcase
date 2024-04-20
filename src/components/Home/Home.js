@@ -51,8 +51,8 @@ function Home({activities, favorites, favHandler, selectedUser}) {
                     repeatDelay: 30
                   }}
                 >
-                  <FavoriteSVG id="favHeart" onClick={addFavoriteMessage}/>
-                  {affirmation && <p>{affirmation}</p>}
+                  
+                  {affirmation && <div><p>{affirmation}</p><FavoriteSVG id="favHeart" onClick={addFavoriteMessage}/></div>}
                 </motion.div>
                 <div id='favQuotes'>
                   <Favorites favorites={favorites}/>
