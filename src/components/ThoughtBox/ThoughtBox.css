@@ -4,6 +4,15 @@
     background: #00000066;
     border-radius: 30px;
     box-shadow: black 0 0 20px 3px;
+    a{
+        margin-top: 30px !important;
+    }
+    input{
+        margin-top: 30px !important;
+    }
+    button{
+        margin-top: 30px !important;
+    }
 }
 
 #userSelection{
@@ -70,4 +79,8 @@ form {
         cursor: pointer;
         background-color: #3b83f3;
     }
+  }
+
+  h3{
+    color: white;
   }

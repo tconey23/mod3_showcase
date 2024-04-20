@@ -1,12 +1,13 @@
-import React, { useState, useGlobalProp } from 'react';
+import React, { useState } from 'react';
 import './ThoughtBox.css';
 import { postThought } from '../../ApiCalls';
-import Users from '../Users/Users';
 import { Link } from 'react-router-dom';
 import Login from '../Login/Login';
+import { useGlobalProp } from '../../index';
 
 const ThoughtBox = ({ userData, onUserChange }) => {
     const [thisThought, setThought] = useState('');
+    const { selectedUser } = useGlobalProp()
     const addThought = event => {
         event.preventDefault();
         const userId = 1;
@@ -27,7 +28,7 @@ const ThoughtBox = ({ userData, onUserChange }) => {
             <h3>What are you feeling today?</h3>
             <form>
                 <Login />
-                <Link to='/home'>skip</Link>
+                {selectedUser && <Link to='/home'>skip</Link>}
                 <input
                     type='text'
                     placeholder=''
