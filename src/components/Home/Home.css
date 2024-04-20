@@ -31,7 +31,7 @@ aside{
     #currentUser{
         color: white;
         font-size: 20px;
-        margin-block-end: auto;
+        margin-block-end: 75px;
     }
     #messages{
         font-size: 20px;

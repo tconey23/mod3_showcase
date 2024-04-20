@@ -19,10 +19,8 @@ function App() {
     favorites, 
     setActivities, 
     activities, 
-    resetFavList,
     setSelectedUser,
     setAffirmation,
-    affirmation
   } = useGlobalProp()
 
 const logOut = () =>  {
@@ -41,6 +39,7 @@ const actUser = async () =>  {
 
 const fetchFav = async () =>  {
   const favResp = await getFav(userId)
+  console.log(favResp)
     setFavorites(favResp)
 }
 

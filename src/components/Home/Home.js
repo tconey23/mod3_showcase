@@ -12,6 +12,7 @@ import { useGlobalProp } from '../../index';
 function Home({activities, favorites, favHandler, selectedUser}) {
   const [component, renderComponent] = useState()
   const rendComps = 'carousel'
+
   let userName, userId
   const { affirmation } = useGlobalProp()
 
