@@ -1,45 +1,26 @@
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import Home from './components/Home/Home';
-import Fidgets from './components/Fidgets/Fidgets';
-import Sandbox from './components/Sandbox/Sandbox';
 import ThoughtBox from './components/ThoughtBox/ThoughtBox';
 import './App.css'
-import { getActivities, getFav, getUsers, postActiveUser } from './ApiCalls';
-
-const GlobalPropContext = createContext();
-
-const GlobalPropProvider = ({ children, onUserChange }) => {
-  const [userData, setUsers] = useState();
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const userList = await getUsers();
-      setUsers(userList.users);
-    };
-    fetchUsers();
-  }, []);
-
-  const globalPropValue = { userData, setUsers, onUserChange };
-
-  return (
-    <GlobalPropContext.Provider value={globalPropValue}>
-      {children}
-    </GlobalPropContext.Provider>
-  );
-};
-
-export const useGlobalProp = () => useContext(GlobalPropContext);
+import { getActivities, getFav, postActiveUser } from './ApiCalls';
+import { useGlobalProp } from './index';
+import Fidgets from './components/Fidgets/Fidgets';
+import Sandbox from './components/Sandbox/Sandbox';
+import Carousel from './components/Carousel/Carousel';
 
 function App() {
 
-  const [activities, setActivities] = useState()
-  const [retriggerFav, resetFavList] = useState(false)
-  const [favorites, setFavorites] = useState()
-  const [userData, setUsers] = useState()
-  const [selectedUser, setSelectedUser] = useState()
-  const [userId, setUserId] = useState('')
+  const { 
+    setFavorites, 
+    userId, 
+    selectedUser, 
+    favorites, 
+    setActivities, 
+    activities, 
+    resetFavList,
+  } = useGlobalProp()
 
 useEffect(() => {
   const fetchData = async () => {
@@ -52,59 +33,49 @@ useEffect(() => {
 
 }, []);
 
-useEffect(() => {
-  const fetchFav = async () => {
-  const favResp = await getFav(userId)
-    setFavorites(favResp)
-    console.log(favResp)
-  }
-fetchFav()
-}, [userId, selectedUser]);
 
-useEffect(() => {
-  if(selectedUser){
   const actUser = async () => {
-   await postActiveUser(selectedUser)
+    await postActiveUser(selectedUser)
   }
-  actUser()
-}
-}, [selectedUser]);
+
+  const fetchFav = async () => {
+    console.log('get favs', selectedUser)
+    const favResp = await getFav(userId)
+      setFavorites(favResp)
+      console.log(favResp)
+  }
 
 const favHandler = () => {
   resetFavList(true)
 }
 
-const handleUserChange = (user) => {
-  localStorage.setItem('activeUser', user.split(',')[1])
-  setUserId(user.split(',')[0])
-  setSelectedUser(user.split(',')[1])
-}
-
-const changeUser = () => {
-  localStorage.setItem('activeUser', "")
-  setUserId("")
-  setSelectedUser("")
-}
-
-//console.log(selectedUser)
+useEffect(() => {
+  fetchFav()
+  actUser()
+}, [selectedUser])
 
 return (
-  <GlobalPropProvider onUserChange={handleUserChange}>
-    <BrowserRouter>
-      <div className="App">
-        <header className="App-header">
-          <Link to='/home'>Home</Link>
-          <Link to='/' onClick={changeUser}>Log Out</Link>
-        </header>
-        <Routes>
-          <Route path='/' element={<ThoughtBox onUserChange={handleUserChange} userData={userData} />} />
-          <Route path="/home" element={<Home selectedUser={selectedUser} favHandler={favHandler} favorites={favorites} activities={activities} />} />
-          {/* <Route path="/fidgets" checker={'checker'} element={<Fidgets />} />
-          <Route path="/sandbox" element={<Sandbox />} /> */}
-        </Routes>
-      </div>
-    </BrowserRouter>
-  </GlobalPropProvider>
+
+  <BrowserRouter>
+    <div className="App">
+      <header className="App-header">
+        <Link to='/home'>Home</Link>
+        <Link to='/'>Log Out</Link>
+      </header>
+      <Routes>
+        <Route path='/' element={<ThoughtBox />} />
+        <Route path="/home" 
+          element={<Home selectedUser={selectedUser} 
+          favHandler={favHandler} 
+          favorites={favorites} 
+          activities={activities}/>}>
+            <Route path='' element={<Carousel />}></Route>
+            <Route path='fidgets' element={<Fidgets />}></Route>
+            <Route path='sandbox' element={<Sandbox />}></Route>
+          </Route>
+      </Routes>
+    </div>
+  </BrowserRouter>
 );
 }
 

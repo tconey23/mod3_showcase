@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useGlobalProp } from '../../index';
 
-const Favorites = ({favorites, selectedUser}) => {
+const Favorites = () => {
 
     let favoriteQuotes
+    const { selectedUser, userData, favorites } = useGlobalProp()
 
-    console.log(favorites.id)
+    console.log(selectedUser, userData, favorites)
 
     if(favorites.id) {
         favoriteQuotes = favorites['favorite quotes'].map((fav, index) => {

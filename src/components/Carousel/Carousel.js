@@ -1,22 +1,26 @@
 import { motion } from 'framer-motion';
 import Slide from '../Slides/Slides';
+import { useGlobalProp } from '../../index';
 import './Carousel.css'
 
-const Carousel = ({activities}) => {
+const Carousel = () => {
 
     let carouselSlides
+    const { activities } = useGlobalProp()
+
+    
 
     if(activities){
-        carouselSlides = activities.activities.map((slide, index) => {
+        carouselSlides = activities.map((slide, index) => {
            return (
-            <motion.div>
+            <motion.div style={{ filter: "opacity(0.50) brightness(1.4) drop-shadow(2px 4px 6px black)" }}>
                 <Slide
                 key={slide.id}
                 actName={slide.name}
                 avail={slide.available}
                 id={slide.id}
                 elem={slide.element}
-                path={slide.path}
+                path={`/home${slide.path}`}
                 > 
                 
                 </Slide>
@@ -24,8 +28,6 @@ const Carousel = ({activities}) => {
             )
         })
     }
-
-
   return (
     <div id='carousel-parent' style={{ touchAction: "none" }}>
         <motion.div                 

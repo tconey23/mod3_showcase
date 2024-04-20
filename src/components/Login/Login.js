@@ -1,28 +1,22 @@
 import React, { useState } from 'react';
-import { useGlobalProp } from '../../App';
+import { useGlobalProp } from '../../index';
+
 import Users from '../Users/Users';
 
 const Login = () => {
-    const [selectedUser, setSelectedUser] = useState('');
-    const [userId, setUserId] = useState('');
     const [dropdownOpen, setDropdownOpen] = useState(false);
-
-    const { onUserChange, userData } = useGlobalProp()
-
-    console.log(userData)
+    const { onUserChange, userData, selectedUser, setSelectedUser, userId, setUserId } = useGlobalProp()
 
     const changeUser = (event) => {
-        console.log('change user', event.name)
         if (event.name) {
             const newUser = `${event.id},${event.name}`
             const userId = event.id
             if (newUser !== 'New user') {
                 setSelectedUser(newUser);
                 setUserId(userId);
-                onUserChange(newUser, userId);
+                // onUserChange(newUser, userId);
             } else {
                 setSelectedUser(newUser);
-                //console.log('Add new user');
             }
         } else {
             addNewUser();

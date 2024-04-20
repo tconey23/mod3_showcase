@@ -1,7 +1,5 @@
 canvas {
-    /* background: radial-gradient(ellipse at top, #4c21e6, black), radial-gradient(ellipse at bottom, #9f0c43fa, #420000); */
-    position: absolute;
-    left: 0;
-    height: 85vh;
-    width: 100vw;
+    background: radial-gradient(ellipse at top, #4c21e675, #00000085), radial-gradient(ellipse at bottom, #9f0c435c, #42000080);
+    height: 95%;
+    width: 95%;
 }

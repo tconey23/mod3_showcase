@@ -1,33 +1,13 @@
 import OpenAI from "openai";
 
-function postData() {
-    fetch('http://localhost:3001/api/v1/data', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(postData)
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-    })
-    .catch(error => {
-      console.error('There was a problem with your fetch operation:', error);
-    });
-}
-
 async function getActivities() {
     try {
-        const response = await fetch('http://localhost:3001/api/v1/data/activities');
+        const response = await fetch('https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/activities');
         if (!response.ok) {
             throw new Error('Failed to load activities');
         }
         const data = await response.json();
+        console.log(data)
         return data;
     } catch (error) {
         console.error('Error fetching activities:', error);
@@ -50,8 +30,9 @@ async function getMessage() {
 }
 
  const getFav = async (id) => {
+  console.log(id)
   try {
-    const response = await fetch(`http://localhost:3001/api/v1/data/users/${id}`);
+    const response = await fetch(`https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${id}`);
     if (!response.ok) {
         throw new Error('Failed to load activities');
     }
@@ -90,8 +71,6 @@ export const getResponse = async () => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    console.log('apiCalls', data);
-    console.log(data)
     return data;
     
   } catch (error) {
@@ -155,46 +134,50 @@ const postFavoriteQuote = async (userId, affirmations) => {
 
 const getUsers = async () => {
   try {
-    const response = await fetch('http://localhost:3001/api/v1/data/users');
+    const response = await fetch('https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users');
     if (!response.ok) {
         // throw new Error('Failed to load activities');
     }
     const data = await response.json();
-    return data;
-} catch (error) {
-    console.error('Error fetching activities:', error);
-    throw error
-}
+    let userArray = []
+    const userDetails = data.forEach((user, index) =>{
+      userArray.push(user)
+    })
+    return userArray;
+  } catch (error) {
+      console.error('Error fetching users:', error);
+      throw error
+  }
 }
 
 const postActiveUser = async (user) => {
-
+  console.log(user)
   if(user){
-  await fetch(`http://localhost:3001/api/v1/data/active_user`, {
-  method: 'PUT',
-  headers: {
-      'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    "name": user
-})
-})
-.then(response => {
-  if (!response.ok) {
-      throw new Error('Network response was not ok');
+    await fetch(`https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/active_user`, {
+    method: 'PUT',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      "name": user
+    })
+    })
+    .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+    return response.json();
+    })
+    .then(data => {
+    //console.log('User data updated successfully:', data);
+    })
+      .catch(error => {
+      console.error('There was a problem with the PATCH request:', error);
+    });
   }
-  return response.json();
-})
-.then(data => {
-  //console.log('User data updated successfully:', data);
-})
-.catch(error => {
-  console.error('There was a problem with the PATCH request:', error);
-});
-}
 }
 
 
 getUsers()
 
-export {postData, getActivities, getMessage, getFav, postThought, postFavoriteQuote, getUsers, postActiveUser}
+export {getActivities, getMessage, getFav, postThought, postFavoriteQuote, getUsers, postActiveUser}
