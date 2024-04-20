@@ -119,6 +119,36 @@ getFav(userId)
 
 }
 
+const deleteFavoriteQuote = async (userId, favorite) => {
+  // `https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${userId}`
+  // `http://localhost:3001/api/v1/data/users/${userId}`
+  const patchData = favorite;
+  console.log(userId, favorite)
+  try {
+    const response = await fetch(`https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${userId}`, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+       patchData
+      })
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();  // Or response.json() if the server responds with JSON
+      throw new Error(`Network response was not ok: ${errorText}`);
+    }
+
+    const data = await response.json();
+    console.log('User data updated successfully:', data);
+    return data;
+  } catch (error) {
+    console.error('There was a problem with the DELETE request:', error);
+    throw error;  // Re-throw to allow caller handling or display an error message
+  }
+}
+
 const getUsers = async () =>  {
   try {
     const response = await fetch('https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users');
@@ -166,4 +196,4 @@ const postActiveUser = async (user) =>  {
 
 getUsers()
 
-export {getActivities, getFav, postThought, postFavoriteQuote, getUsers, postActiveUser, getMessage}
+export {deleteFavoriteQuote, getActivities, getFav, postThought, postFavoriteQuote, getUsers, postActiveUser, getMessage}
