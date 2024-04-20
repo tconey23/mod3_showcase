@@ -2,12 +2,12 @@ import React, { useRef, useEffect } from 'react';
 import Matter from 'matter-js';
 import './Sandbox.css'
 
-const Sandbox = () => {
+const Sandbox = () =>  {
     const canvasRef = useRef(null);
     const engine = Matter.Engine.create();
     const { world } = engine;
 
-    useEffect(() => {
+    useEffect(() =>  {
         const windowWidth = window.innerWidth;
         const windowHeight = window.innerHeight - 120;
 
@@ -85,19 +85,19 @@ const Sandbox = () => {
         // Set colors for grains
         const colorArray = ['#05dff7', '#093285', '#565be3', '#56e3c4'];
 
-        const circles = world.bodies.filter((body) => body.label === "circle")
-        circles.forEach(body => {
+        const circles = world.bodies.filter((body) =>  body.label === "circle")
+        circles.forEach(body =>  {
             body.render.fillStyle = Matter.Common.choose(colorArray);
             body.render.lineWidth = '2'
         });
 
         Matter.Events.on(engine, 'collisionStart', function(event) {
-            event.pairs.forEach(pair => {
+            event.pairs.forEach(pair =>  {
                 //console.log(pair.bodyB.label.includes('Circle'))
                 if (pair.bodyB.label === 'circle') {
                     pair.bodyA.render.fillStyle = '#FF0000'
                     pair.bodyB.render.fillStyle = '#FF0000'
-                    setTimeout(() => {
+                    setTimeout(() =>  {
                         pair.bodyA.render.fillStyle = Matter.Common.choose(colorArray)
                         pair.bodyB.render.fillStyle = Matter.Common.choose(colorArray)
                     }, 10);
@@ -106,7 +106,7 @@ const Sandbox = () => {
         });
 
         Matter.Events.on(engine, 'collisionEnd', function(event) {
-            event.pairs.forEach(pair => {
+            event.pairs.forEach(pair =>  {
                     pair.bodyA.render.fillStyle = Matter.Common.choose(colorArray)
                     pair.bodyB.render.fillStyle = Matter.Common.choose(colorArray)
             });
@@ -116,7 +116,7 @@ const Sandbox = () => {
         Matter.Runner.run(engine);
 
         // Clean up
-        return () => {
+        return () =>  {
             Matter.Render.stop(render);
             Matter.World.clear(world);
             Matter.Engine.clear(engine);

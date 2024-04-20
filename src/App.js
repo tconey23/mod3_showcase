@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import Home from './components/Home/Home';
 import ThoughtBox from './components/ThoughtBox/ThoughtBox';
 import './App.css'
-import { getActivities, getFav, postActiveUser } from './ApiCalls';
+import { getActivities, getFav, postActiveUser, getMessage } from './ApiCalls';
 import { useGlobalProp } from './index';
 import Fidgets from './components/Fidgets/Fidgets';
 import Sandbox from './components/Sandbox/Sandbox';
@@ -20,39 +20,49 @@ function App() {
     setActivities, 
     activities, 
     resetFavList,
+    setSelectedUser,
+    setAffirmation,
+    affirmation
   } = useGlobalProp()
 
-useEffect(() => {
-  const fetchData = async () => {
+const logOut = () =>  {
+  setSelectedUser('')
+}
+
+const fetchMessage = async () =>  {
+  const message = await getMessage()
+  const content = message.choices[0].message.content
+    setAffirmation(content)
+}
+
+const actUser = async () =>  {
+  await postActiveUser(selectedUser)
+}
+
+const fetchFav = async () =>  {
+  const favResp = await getFav(userId)
+    setFavorites(favResp)
+}
+
+const favHandler = () =>  {
+  fetchFav()
+}
+
+useEffect(() =>  {
+  fetchFav()
+  actUser()
+  fetchMessage()
+}, [selectedUser])
+
+useEffect(() =>  {
+  const fetchData = async () =>  {
       const availableActivities = await getActivities();
       setActivities(availableActivities);
   };
   if (!activities) {
       fetchData();
   }
-
 }, []);
-
-
-  const actUser = async () => {
-    await postActiveUser(selectedUser)
-  }
-
-  const fetchFav = async () => {
-    console.log('get favs', selectedUser)
-    const favResp = await getFav(userId)
-      setFavorites(favResp)
-      console.log(favResp)
-  }
-
-const favHandler = () => {
-  resetFavList(true)
-}
-
-useEffect(() => {
-  fetchFav()
-  actUser()
-}, [selectedUser])
 
 return (
 
@@ -60,7 +70,7 @@ return (
     <div className="App">
       <header className="App-header">
         <Link to='/home'>Home</Link>
-        <Link to='/'>Log Out</Link>
+        <Link to='/' onClick={logOut}>Log Out</Link>
       </header>
       <Routes>
         <Route path='/' element={<ThoughtBox />} />

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { getUsers } from './ApiCalls';  // Ensure you have this import if you're using it
+import { getUsers } from './ApiCalls'
 
 const GlobalPropContext = createContext();
 
@@ -13,12 +13,11 @@ const GlobalPropProvider = ({ children }) => {
   const [userId, setUserId] = useState('');
   const [favorites, setFavorites] = useState();
   const [activities, setActivities] = useState();
-  const [retriggerFav, resetFavList] = useState(false);
+  const [affirmation, setAffirmation] = useState();
 
   useEffect(() => {
     const fetchUsers = async () => {
       const userList = await getUsers();
-      console.log(userList);
       setUsers(userList);
     };
     fetchUsers();
@@ -41,9 +40,9 @@ const GlobalPropProvider = ({ children }) => {
     setUserId,
     activities,
     setActivities,
-    resetFavList,
-    retriggerFav,
-    handleUserChange
+    handleUserChange,
+    setAffirmation,
+    affirmation
   };
 
   return (

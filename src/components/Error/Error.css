@@ -10,3 +10,18 @@ h4{
 h5{
     color: white;
 }
+
+#screenCover{
+    position: absolute;
+    left: -370px;
+    top: -137px;
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff1f;
+    z-index: -1;
+}
+
+#loginContainer{
+    margin-left: 120px;
+    z-index: 21;
+}

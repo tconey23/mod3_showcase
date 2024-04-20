@@ -29,8 +29,9 @@ aside{
     justify-content: flex-start;
     align-items: center;
     #currentUser{
-        color:white;
+        color: white;
         font-size: 20px;
+        margin-block-end: auto;
     }
     #messages{
         font-size: 20px;
@@ -50,11 +51,19 @@ aside{
             margin-bottom: 10px;
             align-self: flex-end;
             z-index: 10;
+            scale: 1;
+            position: relative;
+            top: -82px;
+            left: 146px;
+            &:hover{
+                scale: 1.10;
+                cursor: pointer;
+            }
         }
     }
 
     #favQuotes{
-        margin-top: 80px;
+        margin-top: 0px;
         overflow: auto;
         height: 75%;
     #favoriteQuotes{
@@ -74,15 +83,16 @@ aside{
 }
 
 #errorHandler {
-    width: 80%;
-    height: 60vh;
+    width: 60%;
+    height: 63vh;
     background: #0000009c;
     box-shadow: black 0 0 20px 5px;
     display: flex;
     flex-direction: column;
     padding: 0 10px;
-    justify-content: flex-start;
     align-items: center;
     position: absolute;
     z-index: 20;
+    flex-wrap: nowrap;
+    justify-content: center;
 }

@@ -18,7 +18,7 @@ function Fidgets() {
     const [selectedFidget, setSelectedFidget] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleFidgetChange = (event) => {
+    const handleFidgetChange = (event) =>  {
         const selectedValue = event.target.id;
         setIsOpen(false)
         switch (selectedValue) {
@@ -36,7 +36,7 @@ function Fidgets() {
                 break;
         }
 
-    const resetFidget = () => {
+    const resetFidget = () =>  {
         
     }
 
@@ -52,7 +52,7 @@ function Fidgets() {
             id='fidgetMenu'
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() =>  setIsOpen(!isOpen)}
             >
                 Fidgets
             </motion.button>

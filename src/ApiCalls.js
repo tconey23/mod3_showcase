@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+
 
 async function getActivities() {
     try {
@@ -7,7 +7,6 @@ async function getActivities() {
             throw new Error('Failed to load activities');
         }
         const data = await response.json();
-        console.log(data)
         return data;
     } catch (error) {
         console.error('Error fetching activities:', error);
@@ -15,22 +14,8 @@ async function getActivities() {
     }
 }
 
-async function getMessage() {
-  try {
-      const response = await fetch('http://localhost:3001/api/v1/affirmations');
-      if (!response.ok) {
-          throw new Error('Failed to load activities');
-      }
-      const data = await response.json();
-      return data;
-  } catch (error) {
-      console.error('Error fetching activities:', error);
-      throw error
-  }
-}
+ const getFav = async (id) =>  {
 
- const getFav = async (id) => {
-  console.log(id)
   try {
     const response = await fetch(`https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${id}`);
     if (!response.ok) {
@@ -44,8 +29,7 @@ async function getMessage() {
 }
 }
 
-export const getResponse = async () => {
-
+const getMessage = async () =>  {
   const messages= [
     {"role": "user", "content": "This is an application used by children under the age of 10 years old"},
     {"role": "user", "content": "All responses must be appropriate for children"},
@@ -79,7 +63,7 @@ export const getResponse = async () => {
   }
 };
 
-const postThought = async (userId, thought) => {
+const postThought = async (userId, thought) =>  {
   const patchData = thought
   //console.log(thought)
 
@@ -92,24 +76,24 @@ const postThought = async (userId, thought) => {
     "thoughts": patchData
 })
 })
-.then(response => {
+.then(response =>  {
   if (!response.ok) {
       throw new Error('Network response was not ok');
   }
   return response.json();
 })
-.then(data => {
+.then(data =>  {
   //console.log('User data updated successfully:', data);
 })
-.catch(error => {
+.catch(error =>  {
   console.error('There was a problem with the PATCH request:', error);
 });
 }
 
-const postFavoriteQuote = async (userId, affirmations) => {
-  const patchData = affirmations
-  await fetch(`http://localhost:3001/api/v1/data/users/${userId}`, {
-  method: 'PATCH',
+const postFavoriteQuote = async (userId, favorite) =>  {
+  const patchData = favorite
+  await fetch(`https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${userId}`, {
+  method: 'POST',
   headers: {
       'Content-Type': 'application/json'
   },
@@ -117,22 +101,25 @@ const postFavoriteQuote = async (userId, affirmations) => {
     "favorite quotes": patchData
 })
 })
-.then(response => {
+.then(response =>  {
   if (!response.ok) {
-      throw new Error('Network response was not ok');
+    console.log(response)
+      throw new Error(`Network response was not ok${response}`);
   }
   return response.json();
 })
-.then(data => {
+.then(data =>  {
   //console.log('User data updated successfully:', data);
 })
-.catch(error => {
-  console.error('There was a problem with the PATCH request:', error);
+.catch(error =>  {
+  console.error('There was a problem with the POST request:', error);
 });
+
+getFav(userId)
 
 }
 
-const getUsers = async () => {
+const getUsers = async () =>  {
   try {
     const response = await fetch('https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users');
     if (!response.ok) {
@@ -150,8 +137,7 @@ const getUsers = async () => {
   }
 }
 
-const postActiveUser = async (user) => {
-  console.log(user)
+const postActiveUser = async (user) =>  {
   if(user){
     await fetch(`https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/active_user`, {
     method: 'PUT',
@@ -162,16 +148,16 @@ const postActiveUser = async (user) => {
       "name": user
     })
     })
-    .then(response => {
+    .then(response =>  {
       if (!response.ok) {
           throw new Error('Network response was not ok');
       }
     return response.json();
     })
-    .then(data => {
+    .then(data =>  {
     //console.log('User data updated successfully:', data);
     })
-      .catch(error => {
+      .catch(error =>  {
       console.error('There was a problem with the PATCH request:', error);
     });
   }
@@ -180,4 +166,4 @@ const postActiveUser = async (user) => {
 
 getUsers()
 
-export {getActivities, getMessage, getFav, postThought, postFavoriteQuote, getUsers, postActiveUser}
+export {getActivities, getFav, postThought, postFavoriteQuote, getUsers, postActiveUser, getMessage}
