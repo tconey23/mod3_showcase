@@ -14,6 +14,27 @@
   justify-content: flex-start;
 }
 
+#headerLinks{
+  text-decoration: none;
+  color: black;
+  border: outset 2px black;
+  margin-top: 30px !important;
+  border-radius: 6px;
+  margin: 0px 10px;
+  background: rgba(144, 97, 255, 0.33);
+  height: 30px;
+  width: 80px;
+  align-content: center;
+  &:hover{
+    background:mediumpurple;
+    border: inset 2px black;
+  }
+}
+
+.active{
+  text-decoration: underline;
+}
+
 
 .App-logo {
   height: 40vmin;

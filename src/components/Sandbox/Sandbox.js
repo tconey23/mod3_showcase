@@ -1,15 +1,20 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import Matter from 'matter-js';
-import './Sandbox.css'
+import './Sandbox.css';
 
-const Sandbox = () =>  {
+const Sandbox = () => {
     const canvasRef = useRef(null);
-    const engine = Matter.Engine.create();
+    const engine = Matter.Engine.create({ enableSleeping: false });
     const { world } = engine;
 
-    useEffect(() =>  {
+    // Function to setup the canvas
+    const setupCanvas = useCallback(() => {
         const windowWidth = window.innerWidth;
         const windowHeight = window.innerHeight - 120;
+
+        // Clear existing world
+        Matter.World.clear(world, false);
+        Matter.Engine.clear(engine);
 
         const render = Matter.Render.create({
             canvas: canvasRef.current,
@@ -22,9 +27,6 @@ const Sandbox = () =>  {
             }
         });
 
-        Matter.Render.stop(render);
-        Matter.World.clear(world);
-        Matter.Engine.clear(engine);
         Matter.Render.run(render);
 
 
@@ -115,20 +117,27 @@ const Sandbox = () =>  {
         // Run the engine
         Matter.Runner.run(engine);
 
-        // Clean up
-        return () =>  {
+        return () => {
             Matter.Render.stop(render);
             Matter.World.clear(world);
             Matter.Engine.clear(engine);
         };
     }, []);
 
+    useEffect(() => {
+        return setupCanvas();
+    }, [setupCanvas]);
+
+    const resetCanvas = () => {
+        setupCanvas();
+    };
 
     return (
         <div>
+            <button id='resetButton' onClick={resetCanvas}>Reset</button>
             <canvas ref={canvasRef} />
         </div>
-    )
+    );
 };
 
 export default Sandbox;

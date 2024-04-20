@@ -1,8 +1,7 @@
 import PropFidget from "../../assets/fidget"
 import YinyangFidget from "../../assets/fidget2"
 import FlowerFidget from "../../assets/fidget3"
-import { Link } from "react-router-dom";
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import propFidgetPNG from '../../assets/g396.png'
 import yinyangFidgetPNG from '../../assets/g127.png'
@@ -15,33 +14,40 @@ const dropdownVariants = {
   };
 
 function Fidgets() {
-    const [selectedFidget, setSelectedFidget] = useState(null);
-    const [isOpen, setIsOpen] = useState(false);
+    const [selectedFidget, setSelectedFidget] = useState();
+    const [fidgetName, setFidgetName] = useState()
+    const [isOpen, setIsOpen] = useState(false)
 
     const handleFidgetChange = (event) =>  {
         const selectedValue = event.target.id;
+        switchFidget(selectedValue)
         setIsOpen(false)
+    }
+
+    const switchFidget = (selectedValue) => {
+        console.log(selectedValue)
         switch (selectedValue) {
             case 'PropFidget':
-                setSelectedFidget(<PropFidget id='fidget' />);
+                setSelectedFidget(<PropFidget id='fidget' />)
+                setFidgetName(selectedValue)
                 break;
             case 'YinyangFidget':
-                setSelectedFidget(<YinyangFidget id='fidget' />);
+                setSelectedFidget(<YinyangFidget id='fidget' />)
+                setFidgetName(selectedValue)
                 break;
             case 'FlowerFidget':
-                setSelectedFidget(<FlowerFidget id='fidget' />);
+                setSelectedFidget(<FlowerFidget id='fidget' />)
+                setFidgetName(selectedValue)
                 break;
             default:
                 setSelectedFidget(null);
                 break;
-        }
-
-    const resetFidget = () =>  {
-        
+        } 
     }
-
-        
-    };
+        const resetFidget = async () => {
+            await setSelectedFidget(null)
+            switchFidget(fidgetName)
+        }
 
     return (
     <section id='fidgetComponent'>
@@ -60,7 +66,7 @@ function Fidgets() {
             id='fidgetMenu'
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                // onClick={resetFidget}
+                onClick={() =>  resetFidget()}
             >
                 Reset
             </motion.button>

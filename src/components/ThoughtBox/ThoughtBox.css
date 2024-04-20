@@ -1,18 +1,30 @@
 #thoughtBox{
-    width: 80%;
-    height: 80%;
+    width: 50%;
+    height: 20%;
     background: #00000066;
     border-radius: 30px;
     box-shadow: black 0 0 20px 3px;
-    a{
+    a, button {
+        color: black;
+        border: outset 2px black;
         margin-top: 30px !important;
+        border-radius: 6px;
+        margin: 0px 10px;
+        background: rgba(144, 97, 255, 0.33);
+        height: 30px;
+        width: 80px;
+        align-content: center;
+        text-decoration: auto;
+        &:hover{
+            cursor: pointer;
+            background:mediumpurple;
+            border: inset 2px black;
+        }
     }
     input{
         margin-top: 30px !important;
     }
-    button{
-        margin-top: 30px !important;
-    }
+
 }
 
 #userSelection{
