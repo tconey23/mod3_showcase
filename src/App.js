@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, NavLink } from 'react-router-dom';
 import Home from './components/Home/Home';
 import ThoughtBox from './components/ThoughtBox/ThoughtBox';
 import './App.css'
@@ -68,8 +68,8 @@ return (
   <BrowserRouter>
     <div className="App">
       <header className="App-header">
-        <Link to='/home'>Home</Link>
-        <Link to='/' onClick={logOut}>Log Out</Link>
+        <NavLink id='headerLinks' to='/home'>Home</NavLink>
+        <NavLink id='headerLinks' to='/' onClick={logOut}>Log Out</NavLink>
       </header>
       <Routes>
         <Route path='/' element={<ThoughtBox />} />

@@ -3,3 +3,21 @@ canvas {
     height: 95%;
     width: 95%;
 }
+
+#resetButton {
+    color: black;
+    border: outset 2px black;
+    margin-top: 30px !important;
+    border-radius: 6px;
+    margin: 0px 10px;
+    background: rgba(144, 97, 255, 0.33);
+    height: 30px;
+    width: 80px;
+    align-content: center;
+    text-decoration: auto;
+    &:hover{
+        cursor: pointer;
+        background:mediumpurple;
+        border: inset 2px black;
+    }
+}
