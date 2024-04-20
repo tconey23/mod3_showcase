@@ -6,8 +6,8 @@ export default function PropFidget() {
     const [constraints, setConstraints] = useState({ top: 0, right: 0, bottom: 0, left: 0 });
     const controls = useAnimation(); // useAnimation hook for more control over animations
 
-    useEffect(() => {
-        const updateConstraints = () => {
+    useEffect(() =>  {
+        const updateConstraints = () =>  {
             if (ref.current) {
                 const element = ref.current.getBoundingClientRect();
                 setConstraints({
@@ -21,10 +21,10 @@ export default function PropFidget() {
 
         updateConstraints();
         window.addEventListener('resize', updateConstraints);
-        return () => window.removeEventListener('resize', updateConstraints);
+        return () =>  window.removeEventListener('resize', updateConstraints);
     }, []);
 
-    const handleSpin = () => {
+    const handleSpin = () =>  {
         controls.start({
             rotate: [0, 360], // Spin from 0 to 360 degrees
             transition: {

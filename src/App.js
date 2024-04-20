@@ -25,37 +25,37 @@ function App() {
     affirmation
   } = useGlobalProp()
 
-const logOut = () => {
+const logOut = () =>  {
   setSelectedUser('')
 }
 
-const fetchMessage = async () => {
+const fetchMessage = async () =>  {
   const message = await getMessage()
   const content = message.choices[0].message.content
     setAffirmation(content)
 }
 
-const actUser = async () => {
+const actUser = async () =>  {
   await postActiveUser(selectedUser)
 }
 
-const fetchFav = async () => {
+const fetchFav = async () =>  {
   const favResp = await getFav(userId)
     setFavorites(favResp)
 }
 
-const favHandler = () => {
+const favHandler = () =>  {
   fetchFav()
 }
 
-useEffect(() => {
+useEffect(() =>  {
   fetchFav()
   actUser()
   fetchMessage()
 }, [selectedUser])
 
-useEffect(() => {
-  const fetchData = async () => {
+useEffect(() =>  {
+  const fetchData = async () =>  {
       const availableActivities = await getActivities();
       setActivities(availableActivities);
   };

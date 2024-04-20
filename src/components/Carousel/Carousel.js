@@ -7,17 +7,17 @@ import './Carousel.css';
 const durations = [2.5, 3, 3.2, 2, 1.8];
 const delays = [0.1, 0, 0.5, 0.9, 0.3];
 
-const Carousel = () => {
+const Carousel = () =>  {
     const { activities } = useGlobalProp();
-    const pickRandom = (array) => {
-        const randomIndex = Math.floor(Math.random() * array.length);
+    const pickRandom = (array) =>  {
+        const randomIndex = Math.floor(Math.random() * array.length); 
         return array[randomIndex];
     };
     
-    const randomDurations = activities ? activities.map(() => pickRandom(durations)) : [];
-    const randomDelays = activities ? activities.map(() => pickRandom(delays)) : [];
+    const randomDurations = activities ? activities.map(() =>  pickRandom(durations)) : [];
+    const randomDelays = activities ? activities.map(() =>  pickRandom(delays)) : [];
 
-    const carouselSlides = activities ? activities.map((slide, index) => {
+    const carouselSlides = activities ? activities.map((slide, index) =>  {
         return (
             <motion.div
                 key={slide.id}

@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import Login from '../Login/Login';
 import { useGlobalProp } from '../../index';
 
-const ThoughtBox = ({ userData, onUserChange }) => {
+const ThoughtBox = ({ userData, onUserChange }) =>  {
     const [thisThought, setThought] = useState('');
     const { selectedUser } = useGlobalProp()
-    const addThought = event => {
+    const addThought = event =>  {
         event.preventDefault();
         const userId = 1;
         const newThought = {
@@ -19,7 +19,7 @@ const ThoughtBox = ({ userData, onUserChange }) => {
         clearForm();
     };
 
-    const clearForm = () => {
+    const clearForm = () =>  {
         setThought('');
     };
 
@@ -34,7 +34,7 @@ const ThoughtBox = ({ userData, onUserChange }) => {
                     placeholder=''
                     name='thought'
                     value={thisThought}
-                    onChange={event => setThought(event.target.value)}
+                    onChange={event =>  setThought(event.target.value)}
                 />
                 <button onClick={addThought}>Add</button>
             </form>

@@ -14,7 +14,7 @@ async function getActivities() {
     }
 }
 
- const getFav = async (id) => {
+ const getFav = async (id) =>  {
 
   try {
     const response = await fetch(`https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${id}`);
@@ -29,7 +29,7 @@ async function getActivities() {
 }
 }
 
-const getMessage = async () => {
+const getMessage = async () =>  {
   const messages= [
     {"role": "user", "content": "This is an application used by children under the age of 10 years old"},
     {"role": "user", "content": "All responses must be appropriate for children"},
@@ -63,7 +63,7 @@ const getMessage = async () => {
   }
 };
 
-const postThought = async (userId, thought) => {
+const postThought = async (userId, thought) =>  {
   const patchData = thought
   //console.log(thought)
 
@@ -76,21 +76,21 @@ const postThought = async (userId, thought) => {
     "thoughts": patchData
 })
 })
-.then(response => {
+.then(response =>  {
   if (!response.ok) {
       throw new Error('Network response was not ok');
   }
   return response.json();
 })
-.then(data => {
+.then(data =>  {
   //console.log('User data updated successfully:', data);
 })
-.catch(error => {
+.catch(error =>  {
   console.error('There was a problem with the PATCH request:', error);
 });
 }
 
-const postFavoriteQuote = async (userId, favorite) => {
+const postFavoriteQuote = async (userId, favorite) =>  {
   const patchData = favorite
   await fetch(`https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${userId}`, {
   method: 'POST',
@@ -101,17 +101,17 @@ const postFavoriteQuote = async (userId, favorite) => {
     "favorite quotes": patchData
 })
 })
-.then(response => {
+.then(response =>  {
   if (!response.ok) {
     console.log(response)
       throw new Error(`Network response was not ok${response}`);
   }
   return response.json();
 })
-.then(data => {
+.then(data =>  {
   //console.log('User data updated successfully:', data);
 })
-.catch(error => {
+.catch(error =>  {
   console.error('There was a problem with the POST request:', error);
 });
 
@@ -119,7 +119,7 @@ getFav(userId)
 
 }
 
-const getUsers = async () => {
+const getUsers = async () =>  {
   try {
     const response = await fetch('https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users');
     if (!response.ok) {
@@ -137,7 +137,7 @@ const getUsers = async () => {
   }
 }
 
-const postActiveUser = async (user) => {
+const postActiveUser = async (user) =>  {
   if(user){
     await fetch(`https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/active_user`, {
     method: 'PUT',
@@ -148,16 +148,16 @@ const postActiveUser = async (user) => {
       "name": user
     })
     })
-    .then(response => {
+    .then(response =>  {
       if (!response.ok) {
           throw new Error('Network response was not ok');
       }
     return response.json();
     })
-    .then(data => {
+    .then(data =>  {
     //console.log('User data updated successfully:', data);
     })
-      .catch(error => {
+      .catch(error =>  {
       console.error('There was a problem with the PATCH request:', error);
     });
   }

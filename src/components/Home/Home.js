@@ -15,8 +15,8 @@ function Home({activities, favorites, favHandler, selectedUser}) {
   let userName, userId
   const { affirmation } = useGlobalProp()
 
-  useEffect(() => {
-    const selectComponent = () => {
+  useEffect(() =>  {
+    const selectComponent = () =>  {
       renderComponent(rendComps)
     }  
     selectComponent()
@@ -29,7 +29,7 @@ function Home({activities, favorites, favHandler, selectedUser}) {
 }
 
 
-  const addFavoriteMessage = async () => {
+  const addFavoriteMessage = async () =>  {
     
     await postFavoriteQuote(userId, affirmation)
     favHandler()
