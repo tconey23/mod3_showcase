@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { useGlobalProp } from '../../index';
 import { deleteFavoriteQuote } from '../../ApiCalls';
+import './Favorites.css'
 
 const Favorites = () =>  {
 
@@ -8,7 +9,7 @@ const Favorites = () =>  {
     const { favorites, userId, setFavorites } = useGlobalProp()
 
     const deleteMessage = async (event) => {
-        const newFavs = await deleteFavoriteQuote(userId, event.target.parentNode.textContent.replace('X',''))
+        const newFavs = await deleteFavoriteQuote(userId, event.target.parentNode.textContent.replace(/🗑/g, ''))
         setFavorites(newFavs)
     }
     console.log(favorites['favorite quotes'])
@@ -18,8 +19,8 @@ const Favorites = () =>  {
                 <div
                     id={`fav${index}`}
                     key={index}>  
-                   {fav}
-                   <button onClick={(event) => deleteMessage(event)}>X</button>
+                   <button onClick={(event) => deleteMessage(event)}>🗑</button>
+                   {fav} 
                 </div>
                 )
         })

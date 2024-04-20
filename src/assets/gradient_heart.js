@@ -1,8 +1,19 @@
+import React, { useState } from 'react'
+
 export default function FavoriteSVG(props) {
+  const [hover, setHover] = useState(false)
   return (
     <svg
-    width={30}
-    height={40}
+    onMouseEnter={() => setHover(true)}
+    onMouseLeave={() => setHover(false)}
+    style={{
+      marginRight: '5px',
+      scale: hover ? '1.20' : '1',
+      cursor: hover ? 'pointer' : ''  
+    }}
+    margin-right={'5px'}
+    width={15}
+    height={15}
     viewBox="0 0 501.6 418"
     xmlns="http://www.w3.org/2000/svg"
     {...props}

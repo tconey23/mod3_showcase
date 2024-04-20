@@ -46,19 +46,8 @@ aside{
         flex-wrap: wrap;
         align-content: center;
         justify-content: center;
-        #favHeart{
-            margin-top: 10px;
-            margin-bottom: 10px;
-            align-self: flex-end;
-            z-index: 10;
-            scale: 1;
-            position: relative;
-            top: -82px;
-            left: 146px;
-            &:hover{
-                scale: 1.10;
-                cursor: pointer;
-            }
+        #messageContainer{
+            text-wrap: pretty;
         }
     }
 
