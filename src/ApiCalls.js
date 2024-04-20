@@ -122,7 +122,7 @@ getFav(userId)
 const deleteFavoriteQuote = async (userId, favorite) => {
   // `https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${userId}`
   // `http://localhost:3001/api/v1/data/users/${userId}`
-  const patchData = favorite;
+  const patchData = favorite.replace('"', '')
   console.log(userId, favorite)
   try {
     const response = await fetch(`https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${userId}`, {
