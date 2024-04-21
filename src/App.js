@@ -21,10 +21,15 @@ function App() {
     activities, 
     setSelectedUser,
     setAffirmation,
+    allThoughts,
+    setAllThoughts,
+    setLoggedIn,
+    loggedIn
   } = useGlobalProp()
 
 const logOut = () =>  {
   setSelectedUser('')
+  setLoggedIn()
 }
 
 const fetchMessage = async () =>  {
@@ -37,10 +42,16 @@ const actUser = async () =>  {
   await postActiveUser(selectedUser)
 }
 
+const fetchThoughts = async () => {
+  const thoughtResp = await getFav(userId)
+  setAllThoughts(thoughtResp)
+}
+
 const fetchFav = async () =>  {
   const favResp = await getFav(userId)
   console.log(favResp)
     setFavorites(favResp)
+    console.log(allThoughts)
 }
 
 const favHandler = () =>  {
@@ -51,7 +62,15 @@ useEffect(() =>  {
   fetchFav()
   actUser()
   fetchMessage()
+  fetchThoughts()
 }, [selectedUser])
+
+useEffect(() =>  {
+  console.log(allThoughts)
+  console.log(loggedIn)
+  fetchThoughts()
+}, [loggedIn])
+
 
 useEffect(() =>  {
   const fetchData = async () =>  {

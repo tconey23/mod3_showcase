@@ -93,7 +93,9 @@ function Fidgets() {
             </div>
         </div>
         </section>
-        {selectedFidget && <motion.div>{selectedFidget}</motion.div>}
+        <div id='fidgetContainer'>
+            {selectedFidget && <motion.div >{selectedFidget}</motion.div>}
+        </div>
     </section>
     )
 }

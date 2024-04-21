@@ -1,0 +1,9 @@
+#allThoughts{
+    margin-top: 0px;
+    overflow: auto;
+    height: 75%;
+    width: 100%;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}

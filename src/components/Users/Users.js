@@ -3,8 +3,7 @@ import { useGlobalProp } from '../../index';
 const Users = ({onClick}) =>  {
     let userList;
 
-    const { onUserChange, userData } = useGlobalProp()
-
+    const { userData } = useGlobalProp()
 
     if (userData && userData.length >  0) {
         userList = userData.map((user, index) =>  (
@@ -13,7 +12,7 @@ const Users = ({onClick}) =>  {
             </div>
         ));
     } else {
-        // Handle case when userData is undefined or empty
+       
     }
     
     return (

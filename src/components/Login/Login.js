@@ -5,7 +5,7 @@ import Users from '../Users/Users';
 
 const Login = () =>  {
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const { onUserChange, userData, selectedUser, setSelectedUser, userId, setUserId } = useGlobalProp()
+    const { userData, selectedUser, setSelectedUser, setUserId } = useGlobalProp()
 
     const changeUser = (event) =>  {
         if (event.name) {
@@ -19,7 +19,7 @@ const Login = () =>  {
                 setSelectedUser(newUser);
             }
         } else {
-            addNewUser();
+            // addNewUser();
         }
         setDropdownOpen(prevState =>  !prevState);
     }
@@ -28,9 +28,8 @@ const Login = () =>  {
         setDropdownOpen(prevState =>  !prevState);
     }
 
-    const addNewUser = () =>  {
-        // Implement functionality to add a new user
-    }
+    // const addNewUser = () =>  {
+    // }
 
     return (
         <div id='userSelection'>
@@ -45,7 +44,7 @@ const Login = () =>  {
             {dropdownOpen && (
                 <div className="dropdown-menu" id="dropdownMenu">
                     <Users className="dropdown-item" onClick={changeUser} userData={userData} />
-                    <div className="dropdown-item" onClick={changeUser}>New user</div>
+                    {/* <div className="dropdown-item" onClick={changeUser}>New user</div> */}
                 </div>
             )}
         </div>
