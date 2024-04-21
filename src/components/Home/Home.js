@@ -53,9 +53,7 @@ function Home() {
       }
       refreshQuote();
       const updatedFavs = await postFavoriteQuote(selectedUser.id, favoriteMessage);
-      console.log(updatedFavs)
       await setFavorites(updatedFavs['messages']);
-      console.log(favorites)
   };
 
   return (
@@ -125,5 +123,5 @@ function Home() {
 export default Home;
 
 Home.propTypes = {
-  selectedUser: PropTypes.string.isRequired,
+  selectedUser: PropTypes.string
 };

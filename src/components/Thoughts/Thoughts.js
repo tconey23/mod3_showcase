@@ -6,8 +6,6 @@ import PropTypes from "prop-types";
 const Thoughts = () => {
   let thoughtList = [];
   const { allThoughts } = useGlobalProp();
-
-  console.log(allThoughts)
   if (allThoughts) {
     thoughtList = allThoughts.map((thought) => {
       return (

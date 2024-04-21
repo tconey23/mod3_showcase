@@ -10,7 +10,6 @@ const Favorites = () => {
 
   useEffect(() => {
     if (favorites) {
-      console.log(favorites)
       const updatedFavoriteQuotes = favorites.map((fav, index) => (
         <div className="favs-thoughts" id={fav.id} key={fav.id}>
           <button onClick={(event) => deleteMessage(event)}>🗑</button>

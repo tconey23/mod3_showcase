@@ -69,7 +69,6 @@ const getMessage = async () => {
 };
 
 const postThought = async (userId, thought) => {
-  console.log(thought, userId)
   try {
     const response = await fetch(
       
@@ -86,7 +85,6 @@ const postThought = async (userId, thought) => {
     );
 
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error("There was a problem with the POST request:", error);
@@ -95,7 +93,6 @@ const postThought = async (userId, thought) => {
 };
 
 const postFavoriteQuote = async (userId, favoriteMessage) => {
-  console.log(favoriteMessage, userId)
   try {
     const response = await fetch(
       
@@ -112,7 +109,6 @@ const postFavoriteQuote = async (userId, favoriteMessage) => {
     );
 
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error("There was a problem with the POST request:", error);
@@ -121,9 +117,6 @@ const postFavoriteQuote = async (userId, favoriteMessage) => {
 };
 
 const deleteFavoriteQuote = async (msgId, userId) => {
-//http://localhost:3001/api/v1/data/users/${userId}/messages
-//https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${userId}/messages
-console.log(msgId, userId)
   try {
     const response = await fetch(
       `https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${userId}/messages`,
@@ -181,7 +174,6 @@ const getActiveUser = async () => {
       throw new Error("Failed to load activities");
     }
     const data = await response.json();
-    console.log(data)
     return data;
   } catch (error) {
     console.error("Error fetching users:", error);

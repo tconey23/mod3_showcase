@@ -15,16 +15,11 @@ function App() {
   const {
     setFavorites,
     selectedUser,
-    favorites,
     setActivities,
     activities,
     setSelectedUser,
     setAffirmation,
     setLoggedIn,
-    loggedIn,    
-    thisThought,
-    setThought,
-    allThoughts,
     setAllThoughts,
   } = useGlobalProp();
 
@@ -46,14 +41,11 @@ function App() {
 
   useEffect(() => {
     if(selectedUser){ 
-      console.log(selectedUser)
       fetchMessage()
       actUser()
       setFavorites(selectedUser['messages'])
       setAllThoughts(selectedUser['thoughts'])
       setLoggedIn(true)
-      console.log('favorites', favorites)
-      console.log(loggedIn)
     }
   }, [selectedUser]);
 
@@ -100,7 +92,7 @@ function App() {
 export default App;
 
 App.propTypes = {
-  selectedUser: PropTypes.string.isRequired,
+  selectedUser: PropTypes.string,
   favorites: PropTypes.array,
   activities: PropTypes.array,
   userId: PropTypes.number,

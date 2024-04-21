@@ -25,7 +25,6 @@ function Fidgets() {
   };
 
   const switchFidget = (selectedValue) => {
-    console.log(selectedValue);
     switch (selectedValue) {
       case "PropFidget":
         setSelectedFidget(<PropFidget id="fidget" />);

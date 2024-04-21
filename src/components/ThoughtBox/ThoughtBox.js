@@ -65,11 +65,10 @@ const ThoughtBox = () => {
 export default ThoughtBox;
 
 ThoughtBox.propTypes = {
-  userId: PropTypes.number.isRequired,
   setAllThoughts: PropTypes.func,
   loggedIn: PropTypes.bool,
   setLoggedIn: PropTypes.func,
   setThought: PropTypes.func,
   thisThought: PropTypes.string,
-  selectedUser: PropTypes.string.isRequired,
+  selectedUser: PropTypes.string
 };

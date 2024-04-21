@@ -121,7 +121,6 @@ const Sandbox = () => {
 
     Matter.Events.on(engine, "collisionStart", function (event) {
       event.pairs.forEach((pair) => {
-        //console.log(pair.bodyB.label.includes('Circle'))
         if (pair.bodyB.label === "circle") {
           pair.bodyA.render.fillStyle = "#FF0000";
           pair.bodyB.render.fillStyle = "#FF0000";

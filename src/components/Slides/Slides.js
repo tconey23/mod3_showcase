@@ -20,6 +20,6 @@ export default Slides;
 
 Slides.propTypes = {
   actName: PropTypes.string.isRequired,
-  avail: PropTypes.string.isRequired,
+  avail: PropTypes.bool.isRequired,
   path: PropTypes.string.isRequired,
 };
