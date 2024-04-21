@@ -1,0 +1,10 @@
+{
+    "responseOne": {
+      "id": "responseOne",
+      "content": "You are doing great"
+    },
+    "responseTwo": {
+      "id": "responseTwo",
+      "content": "You are kind, unique, and capable of achieving anything you set your mind to."
+    }
+  }

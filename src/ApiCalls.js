@@ -57,6 +57,7 @@ const getMessage = async () =>  {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
+    console.log(data)
     return data;
     
   } catch (error) {
@@ -87,7 +88,7 @@ const postThought = async (userId, thought) =>  {
   return response.json();
 })
 .then(data =>  {
-  //console.log('User data updated successfully:', data);
+  console.log('User data updated successfully:', data);
 })
 .catch(error =>  {
   console.error('There was a problem with the POST request:', error);
@@ -115,7 +116,7 @@ const postFavoriteQuote = async (userId, favorite) =>  {
   return response.json();
 })
 .then(data =>  {
-  //console.log('User data updated successfully:', data);
+  console.log('User data updated successfully:', data);
 })
 .catch(error =>  {
   console.error('There was a problem with the POST request:', error);
@@ -126,8 +127,6 @@ getFav(userId)
 }
 
 const deleteFavoriteQuote = async (userId, favorite) => {
-  // `https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${userId}`
-  // `http://localhost:3001/api/v1/data/users/${userId}`
   const patchData = favorite.replace('"', '')
   console.log(userId, favorite)
   try {
@@ -142,7 +141,7 @@ const deleteFavoriteQuote = async (userId, favorite) => {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();  // Or response.json() if the server responds with JSON
+      const errorText = await response.text(); 
       throw new Error(`Network response was not ok: ${errorText}`);
     }
 
@@ -151,37 +150,7 @@ const deleteFavoriteQuote = async (userId, favorite) => {
     return data;
   } catch (error) {
     console.error('There was a problem with the DELETE request:', error);
-    throw error;  // Re-throw to allow caller handling or display an error message
-  }
-}
-
-const deleteThought = async (userId, thought) => {
-  // `https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${userId}`
-  // `http://localhost:3001/api/v1/data/users/${userId}`
-  const patchData = thought.replace('"', '')
-  console.log(userId, thought)
-  try {
-    const response = await fetch(`https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${userId}`, {
-      method: 'DELETE',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-       "thoughts": patchData
-      })
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();  // Or response.json() if the server responds with JSON
-      throw new Error(`Network response was not ok: ${errorText}`);
-    }
-
-    const data = await response.json();
-    console.log('User data updated successfully:', data);
-    return data;
-  } catch (error) {
-    console.error('There was a problem with the DELETE request:', error);
-    throw error;  // Re-throw to allow caller handling or display an error message
+    throw error;  
   }
 }
 
@@ -189,7 +158,7 @@ const getUsers = async () =>  {
   try {
     const response = await fetch('https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users');
     if (!response.ok) {
-        // throw new Error('Failed to load activities');
+        throw new Error('Failed to load activities');
     }
     const data = await response.json();
     let userArray = []
@@ -221,7 +190,7 @@ const postActiveUser = async (user) =>  {
     return response.json();
     })
     .then(data =>  {
-    //console.log('User data updated successfully:', data);
+    console.log('User data updated successfully:', data);
     })
       .catch(error =>  {
       console.error('There was a problem with the PATCH request:', error);
@@ -232,4 +201,4 @@ const postActiveUser = async (user) =>  {
 
 getUsers()
 
-export {deleteThought, deleteFavoriteQuote, getActivities, getFav, postThought, postFavoriteQuote, getUsers, postActiveUser, getMessage}
+export {deleteFavoriteQuote, getActivities, getFav, postThought, postFavoriteQuote, getUsers, postActiveUser, getMessage}

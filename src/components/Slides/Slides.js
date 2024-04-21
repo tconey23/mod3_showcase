@@ -14,7 +14,7 @@ function Slides({id, actName, avail, elem, path}) {
         id='bubble'
         >
             <Bubble />
-            <Link id="linkToPage" to={path}/>
+            {avail && <Link id="linkToPage" to={path}/>}
             <h3 id='slideName'>{actName}</h3>
         </motion.div>
     )

@@ -1,11 +1,15 @@
 {
-    "id": "1",
-    "name": "Tom",
-    "account type": "parent",
+    "id": "2",
+    "name": "Max",
+    "account type": "child",
     "stats": [],
-    "favorite quotes": [],
+    "favorite quotes": [
+      "Struggling is part of learning",
+      "You'll find a way",
+      "I know you'll sort it out"
+    ],
     "favorite activities": [],
     "thoughts": [
-        "Happy"
+      "Happy"
     ]
   }
