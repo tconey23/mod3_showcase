@@ -1,9 +1,6 @@
-import ThoughtBox from "../ThoughtBox/ThoughtBox"
-import { getActivities, getFav, getUsers, postActiveUser } from '../../ApiCalls'
-import {useState, useEffect} from 'react'
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Login from "../Login/Login";
 import './Error.css'
+import PropTypes from 'prop-types'
 
 const Error = ({errorType}) =>  {
 
@@ -24,3 +21,7 @@ const Error = ({errorType}) =>  {
 }
 
 export default Error
+
+Error.propTypes = {
+  errorType: PropTypes.string.isRequired,
+}

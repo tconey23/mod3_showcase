@@ -9,6 +9,7 @@ import { useGlobalProp } from './index';
 import Fidgets from './components/Fidgets/Fidgets';
 import Sandbox from './components/Sandbox/Sandbox';
 import Carousel from './components/Carousel/Carousel';
+import PropTypes from 'prop-types'
 
 function App() {
 
@@ -93,8 +94,9 @@ return (
       <Routes>
         <Route path='/' element={<ThoughtBox />} />
         <Route path="/home" 
-          element={<Home selectedUser={selectedUser} 
-          favHandler={favHandler} 
+          element={<Home 
+          favHandler={favHandler}
+          selectedUser={selectedUser} 
           favorites={favorites} 
           activities={activities}/>}>
             <Route path='' element={<Carousel />}></Route>
@@ -109,5 +111,12 @@ return (
 
 export default App;
 
-
-
+App.propTypes = {
+  selectedUser: PropTypes.string.isRequired,
+  favHandler: PropTypes.func.isRequired,
+  favorites: PropTypes.array,
+  activities: PropTypes.array,
+  userId: PropTypes.number,
+  allThoughts: PropTypes.array,
+  loggedIn: PropTypes.bool,
+}

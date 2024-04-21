@@ -9,25 +9,25 @@ import Thoughts from '../Thoughts/Thoughts'
 import Error from '../Error/Error';
 import { useGlobalProp } from '../../index';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import PropTypes from 'prop-types'
 
 const variants = {
   enter: (direction) => ({
-    y: 300, // Start from the bottom of the container
+    y: 300, 
     opacity: 0
   }),
   center: {
-    y: 0, // End at the top of the container
+    y: 0, 
     opacity: 1
   },
   exit: (direction) => ({
-    y: direction < 0 ? 300 : -300, // Exit to the bottom or top depending on direction
+    y: direction < 0 ? 300 : -300, 
     opacity: 0
   }),
 };
 
+function Home({ favHandler, selectedUser }) {
 
-function Home({activities, favorites, favHandler, selectedUser}) {
   const [component, renderComponent] = useState()
   const rendComps = 'carousel'
 
@@ -42,8 +42,6 @@ function Home({activities, favorites, favHandler, selectedUser}) {
   let userName, userId
   const { affirmation, setAffirmation } = useGlobalProp()
 
-
-
   useEffect(() =>  {
     const selectComponent = () =>  {
       renderComponent(rendComps)
@@ -57,19 +55,17 @@ function Home({activities, favorites, favHandler, selectedUser}) {
     setAffirmation(content)
   }
 
-  
+
  if(selectedUser){
   userName = selectedUser.split(',')[1]
   userId = selectedUser.split(',')[0]
 }
-
 
   const addFavoriteMessage = async () =>  {
     await postFavoriteQuote(userId, affirmation)
     refreshQuote()
     favHandler()
   }
-
       return (
         <main>
         {selectedUser ? (
@@ -126,5 +122,9 @@ function Home({activities, favorites, favHandler, selectedUser}) {
       );
 }
 
-
 export default Home
+
+Home.propTypes = {
+  selectedUser: PropTypes.string.isRequired,
+  favHandler: PropTypes.func.isRequired
+}

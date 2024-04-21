@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ThoughtBox.css';
 import { postThought, getFav } from '../../ApiCalls';
 import { Link, useNavigate } from 'react-router-dom';
 import Login from '../Login/Login';
 import { useGlobalProp } from '../../index';
+import PropTypes from 'prop-types'
 
 const ThoughtBox = () =>  {
 
@@ -51,3 +52,15 @@ const ThoughtBox = () =>  {
 };
 
 export default ThoughtBox
+
+ThoughtBox.propTypes = {
+  userId: PropTypes.number.isRequired,
+  setAllThoughts: PropTypes.func,
+  loggedIn: PropTypes.bool,
+  setLoggedIn: PropTypes.func,
+  setThought: PropTypes.func,
+  thisThought: PropTypes.string,
+  selectedUser: PropTypes.string.isRequired
+}
+
+

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useGlobalProp } from '../../index';
+import PropTypes from 'prop-types'
 
 import Users from '../Users/Users';
 
@@ -14,12 +15,11 @@ const Login = () =>  {
             if (newUser !== 'New user') {
                 setSelectedUser(newUser);
                 setUserId(userId);
-                // onUserChange(newUser, userId);
             } else {
                 setSelectedUser(newUser);
             }
         } else {
-            // addNewUser();
+
         }
         setDropdownOpen(prevState =>  !prevState);
     }
@@ -28,8 +28,7 @@ const Login = () =>  {
         setDropdownOpen(prevState =>  !prevState);
     }
 
-    // const addNewUser = () =>  {
-    // }
+
 
     return (
         <div id='userSelection'>
@@ -44,7 +43,6 @@ const Login = () =>  {
             {dropdownOpen && (
                 <div className="dropdown-menu" id="dropdownMenu">
                     <Users className="dropdown-item" onClick={changeUser} userData={userData} />
-                    {/* <div className="dropdown-item" onClick={changeUser}>New user</div> */}
                 </div>
             )}
         </div>
@@ -53,3 +51,10 @@ const Login = () =>  {
 }
 
 export default Login
+
+Login.propTypes = {
+    selectedUser: PropTypes.string.isRequired,
+    userData: PropTypes.array,
+    setSelectedUser: PropTypes.func,
+    setUserId: PropTypes.func,
+  }

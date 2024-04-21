@@ -1,17 +1,13 @@
 import './Thoughts.css'
 import React, {useEffect} from 'react';
 import { useGlobalProp } from '../../index';
-import { deleteThought } from '../../ApiCalls';
+import PropTypes from 'prop-types'
 
 const Thoughts = () =>  {
 
     let thoughtList = []
-    const { allThoughts, userId, setAllThoughts } = useGlobalProp()
+    const { allThoughts } = useGlobalProp()
 
-    const deleteThisThought = async (event) => {
-        const newThoughts = await deleteThought(userId, event.target.parentNode.textContent.replace(/🗑/g, ''))
-        setAllThoughts(newThoughts)
-    }
 
     if(allThoughts['thoughts']) {
         thoughtList = allThoughts['thoughts'].map((thought, index) =>  {
@@ -19,8 +15,7 @@ const Thoughts = () =>  {
                 <div
                 className='favs-thoughts'
                     id={`thought${index}`}
-                    key={index}>  
-                   <button onClick={(event) => deleteThisThought(event)}>🗑</button>
+                    key={index}> 
                    {thought} 
                 </div>
                 )
@@ -37,3 +32,7 @@ const Thoughts = () =>  {
     )
 }
 export default Thoughts
+
+Thoughts.propTypes = {
+  allThoughts: PropTypes.array,
+}

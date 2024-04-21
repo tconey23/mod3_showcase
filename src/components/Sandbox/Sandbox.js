@@ -6,13 +6,10 @@ const Sandbox = () => {
     const canvasRef = useRef(null);
     const engine = Matter.Engine.create({ enableSleeping: false });
     const { world } = engine;
-
-    // Function to setup the canvas
     const setupCanvas = useCallback(() => {
         const windowWidth = window.innerWidth;
         const windowHeight = window.innerHeight - 120;
 
-        // Clear existing world
         Matter.World.clear(world, false);
         Matter.Engine.clear(engine);
 
@@ -30,15 +27,13 @@ const Sandbox = () => {
         Matter.Render.run(render);
 
 
-        const circleRadius = Math.min(windowWidth, windowHeight) * 0.2; // Adjust this value as needed
+        const circleRadius = Math.min(windowWidth, windowHeight) * 0.2
         const circleCenterX = windowWidth / 2;
         const circleCenterY = windowHeight / 2;
-        const numElements = 1000; // Increase this value for denser filling
-        const elementRadius = 4; // Adjust this value as needed
+        const numElements = 1000; 
+        const elementRadius = 4; 
 
-        // Loop through each element
         for (let i = 0; i < numElements; i++) {
-            // Calculate random position within the circle
             const randomAngle = Math.random() * 2 * Math.PI;
             const randomRadius = Math.random() * circleRadius;
             const x = circleCenterX + randomRadius * Math.cos(randomAngle);
@@ -70,8 +65,6 @@ const Sandbox = () => {
         Matter.Composite.add(world, mouseConstraint);
 
         render.mouse = mouse;
-
-        // Set up boundaries as walls based on window dimensions
         const wallThickness = 10;
         const bounds = Matter.Bodies.rectangle(windowWidth / 2, windowHeight / 2, windowWidth + 2 * wallThickness, windowHeight + 2 * wallThickness, {
             isStatic: true
@@ -83,8 +76,6 @@ const Sandbox = () => {
         Matter.World.add(world, [wallLeft, wallRight, wallTop, wallBottom]);
 
         engine.world.gravity.y = 0;
-
-        // Set colors for grains
         const colorArray = ['#05dff7', '#093285', '#565be3', '#56e3c4'];
 
         const circles = world.bodies.filter((body) =>  body.label === "circle")
@@ -114,7 +105,6 @@ const Sandbox = () => {
             });
         });
 
-        // Run the engine
         Matter.Runner.run(engine);
 
         return () => {
@@ -140,4 +130,4 @@ const Sandbox = () => {
     );
 };
 
-export default Sandbox;
+export default Sandbox

@@ -1,7 +1,7 @@
 import PropFidget from "../../assets/fidget"
 import YinyangFidget from "../../assets/fidget2"
 import FlowerFidget from "../../assets/fidget3"
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import propFidgetPNG from '../../assets/g396.png'
 import yinyangFidgetPNG from '../../assets/g127.png'

@@ -1,4 +1,5 @@
 import { useGlobalProp } from '../../index';
+import PropTypes from 'prop-types'
 
 const Users = ({onClick}) =>  {
     let userList;
@@ -23,3 +24,7 @@ const Users = ({onClick}) =>  {
 }
 
 export default Users;
+
+Users.propTypes = {
+  userData: PropTypes.array.isRequired,
+}
