@@ -21,7 +21,32 @@ h5{
     z-index: -1;
 }
 
-#loginContainer{
+#errorContainer{
+    width: 500px;
+    background: #373737;
     margin-left: 120px;
     z-index: 21;
+    height: 300px;
+    align-content: center;
+    border-radius: 30px;
+    font-size: 25px;
+
+}
+
+#errorReturn{
+    text-decoration: none;
+    color: black;
+    border: outset 2px black;
+    margin-top: 30px !important;
+    border-radius: 6px;
+    margin: 0px 10px;
+    background: rgba(144, 97, 255, 0.33);
+    height: 30px;
+    width: 80px;
+    align-content: center;
+    padding: 3px;
+    &:hover{
+      background:mediumpurple;
+      border: inset 2px black;
+    }
 }

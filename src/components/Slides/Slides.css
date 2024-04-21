@@ -2,12 +2,34 @@
     margin-left: 30px;
 }
 
-#linkToPage {
+#linkToPage{
     width: 150px;
     height: 110px;
-    /* background-color: aliceblue; */
+    margin-top: 25px;
+    padding-top:20px;
     left: 50px;
     top: 50px;
     position: absolute;
     display: block;
+    opacity: 0;
+    &:hover{
+        opacity: 1;
+        cursor:pointer;
+    }
+}
+
+#status{
+    width: 150px;
+    height: 110px;
+    margin-top: 25px;
+    padding-top:20px;
+    left: 50px;
+    top: 50px;
+    position: absolute;
+    display: block;
+    opacity: 0;
+    &:hover{
+        opacity: 1;
+        cursor:not-allowed;
+    }
 }

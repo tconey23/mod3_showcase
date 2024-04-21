@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useGlobalProp } from "../../index";
 import PropTypes from "prop-types";
 
@@ -6,20 +6,11 @@ import Users from "../Users/Users";
 
 const Login = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { userData, selectedUser, setSelectedUser, setUserId } =
-    useGlobalProp();
+  const { userData, selectedUser, setSelectedUser} = useGlobalProp();
 
   const changeUser = (event) => {
-    if (event.name) {
-      const newUser = `${event.id},${event.name}`;
-      const userId = event.id;
-      if (newUser !== "New user") {
-        setSelectedUser(newUser);
-        setUserId(userId);
-      } else {
-        setSelectedUser(newUser);
-      }
-    } else {
+    if (event.name) {    
+        setSelectedUser(event);
     }
     setDropdownOpen((prevState) => !prevState);
   };
@@ -33,7 +24,7 @@ const Login = () => {
       <div className="dropdown">
         <div className="dropdown-toggle" onClick={toggleDropdown}>
           {selectedUser ? (
-            <span>{selectedUser.split(",")[1]}</span>
+            <span>{selectedUser.name}</span>
           ) : (
             <span>Select User</span>
           )}

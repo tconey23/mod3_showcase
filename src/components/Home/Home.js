@@ -26,11 +26,11 @@ const variants = {
   }),
 };
 
-function Home({ favHandler, selectedUser }) {
-  const [component, renderComponent] = useState();
+function Home() {
+  const { affirmation, setAffirmation, selectedUser, setFavorites, favorites } = useGlobalProp();
   const rendComps = "carousel";
 
-  const [visibleComponent, setVisibleComponent] = useState("thoughts");
+  const [visibleComponent, setVisibleComponent] = useState("favorites");
   const [direction, setDirection] = useState(0);
 
   const toggleComponent = () => {
@@ -40,38 +40,30 @@ function Home({ favHandler, selectedUser }) {
     );
   };
 
-  let userName, userId;
-  const { affirmation, setAffirmation } = useGlobalProp();
-
-  useEffect(() => {
-    const selectComponent = () => {
-      renderComponent(rendComps);
-    };
-    selectComponent();
-  }, []);
-
   const refreshQuote = async () => {
     const message = await getMessage();
     const content = message.choices[0].message.content;
     setAffirmation(content);
   };
 
-  if (selectedUser) {
-    userName = selectedUser.split(",")[1];
-    userId = selectedUser.split(",")[0];
-  }
-
   const addFavoriteMessage = async () => {
-    await postFavoriteQuote(userId, affirmation);
-    refreshQuote();
-    favHandler();
+      const favoriteMessage = {
+        id: Date.now(),
+        message: affirmation,
+      }
+      refreshQuote();
+      const updatedFavs = await postFavoriteQuote(selectedUser.id, favoriteMessage);
+      console.log(updatedFavs)
+      await setFavorites(updatedFavs['messages']);
+      console.log(favorites)
   };
+
   return (
     <main>
       {selectedUser ? (
         <aside>
           <p id="currentUser">
-            {userName}
+            {selectedUser && selectedUser.name}
             <RefreshSVG onClick={refreshQuote} />
           </p>
           <div id="messages">
@@ -134,5 +126,4 @@ export default Home;
 
 Home.propTypes = {
   selectedUser: PropTypes.string.isRequired,
-  favHandler: PropTypes.func.isRequired,
 };

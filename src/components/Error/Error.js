@@ -1,18 +1,33 @@
 import Login from "../Login/Login";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Error.css";
 import PropTypes from "prop-types";
+import { getActiveUser } from "../../ApiCalls";
+import { useGlobalProp } from "../../index";
 
 const Error = ({ errorType }) => {
+  const {  setSelectedUser } = useGlobalProp()
+
+  let foundUser
+
+
+  useEffect(() => {
+    const findLoggedInUser = async () => {
+      foundUser = await getActiveUser()
+      if(foundUser){
+        setSelectedUser(Object.values(foundUser).toString())}
+    }
+    findLoggedInUser()
+  }, [])
+
   return (
     <div id="errorHandler">
-      <div id="screenCover"></div>
-      {errorType === "login_lost" && (
-        <div>
-          <h4>Whoops! It looks like your account has been reset</h4>
-          <h5>Select a user below to continue</h5>
-          <div id="loginContainer">
-            <Login />
-          </div>
+        {errorType === "bad_path" && (
+        <div id="errorContainer">
+          <h4>*404*</h4>
+          <h5>This page wasn't found</h5>
+          <Link id='errorReturn' to='/home'>Go back</Link>
         </div>
       )}
     </div>

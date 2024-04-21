@@ -9,7 +9,8 @@ function Slides({ actName, avail, path }) {
   return (
     <motion.div id="bubble">
       <Bubble />
-      {avail && <Link id="linkToPage" to={path} />}
+      {avail && <Link id="linkToPage" to={path}>Play!</Link>}
+      {!avail && <p id='status'>Currently unavailable</p>}
       <h3 id="slideName">{actName}</h3>
     </motion.div>
   );

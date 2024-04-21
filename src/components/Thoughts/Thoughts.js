@@ -7,17 +7,15 @@ const Thoughts = () => {
   let thoughtList = [];
   const { allThoughts } = useGlobalProp();
 
-  if (allThoughts["thoughts"]) {
-    thoughtList = allThoughts["thoughts"].map((thought, index) => {
+  console.log(allThoughts)
+  if (allThoughts) {
+    thoughtList = allThoughts.map((thought) => {
       return (
-        <div className="favs-thoughts" id={`thought${index}`} key={index}>
-          {thought}
+        <div className="favs-thoughts" id={thought.id} key={thought.id}>
+          {thought.thought}
         </div>
       );
     });
-    allThoughts["thoughts"].forEach((thought) =>
-      console.log(thought.thisThought),
-    );
   }
 
   return (
