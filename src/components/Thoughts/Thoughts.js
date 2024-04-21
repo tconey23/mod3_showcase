@@ -1,6 +1,7 @@
 import './Thoughts.css'
 import React, {useEffect} from 'react';
 import { useGlobalProp } from '../../index';
+import PropTypes from 'prop-types'
 
 const Thoughts = () =>  {
 
@@ -31,3 +32,7 @@ const Thoughts = () =>  {
     )
 }
 export default Thoughts
+
+Thoughts.propTypes = {
+  allThoughts: PropTypes.array,
+}

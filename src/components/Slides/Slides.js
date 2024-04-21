@@ -1,14 +1,11 @@
 import './Slides.css'
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-
 import './Slides.css'
 import Bubble from './bubbleButton'
+import PropTypes from 'prop-types'
 
-function Slides({id, actName, avail, elem, path}) {
-
-
+function Slides({actName, avail, path}) {
     return (
         <motion.div
         id='bubble'
@@ -18,8 +15,13 @@ function Slides({id, actName, avail, elem, path}) {
             <h3 id='slideName'>{actName}</h3>
         </motion.div>
     )
-
 }
 
 export default Slides
+
+Slides.propTypes = {
+    actName: PropTypes.string.isRequired,
+    avail: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired
+}
 

@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { useGlobalProp } from '../../index';
 import { deleteFavoriteQuote } from '../../ApiCalls';
 import './Favorites.css'
+import PropTypes from 'prop-types'
 
 const Favorites = () =>  {
 
@@ -37,3 +38,9 @@ const Favorites = () =>  {
 }
 
 export default Favorites
+
+Favorites.propTypes = {
+    favorites: PropTypes.array,
+    activities: PropTypes.array,
+    userId: PropTypes.number,
+  }
