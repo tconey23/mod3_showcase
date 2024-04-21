@@ -1,0 +1,37 @@
+[
+    {
+      "id": 1,
+      "name": "Fidget Spinners",
+      "available": true,
+      "path": "/fidgets",
+      "element": "Fidgets"
+    },
+    {
+      "id": 2,
+      "name": "Sandbox",
+      "available": true,
+      "path": "/sandbox",
+      "element": "Sandbox"
+    },
+    {
+      "id": 3,
+      "name": "Zen Garden",
+      "available": false,
+      "path": "/zengarden",
+      "element": "ZenGarden"
+    },
+    {
+      "id": 4,
+      "name": "Waveform",
+      "available": false,
+      "path": "/waveform",
+      "element": "Waveform"
+    },
+    {
+      "id": 5,
+      "name": "Galactic Pool",
+      "available": false,
+      "path": "/galacticpool",
+      "element": "GalacticPool"
+    }
+  ]

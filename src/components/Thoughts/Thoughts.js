@@ -1,13 +1,39 @@
 import './Thoughts.css'
-import ThoughtBox from './components/ThoughtBox/ThoughtBox';
+import React, {useEffect} from 'react';
+import { useGlobalProp } from '../../index';
+import { deleteThought } from '../../ApiCalls';
 
-const Thoughts = ({id, thought}) =>  {
+const Thoughts = () =>  {
 
+    let thoughtList = []
+    const { allThoughts, userId, setAllThoughts } = useGlobalProp()
 
-        
+    const deleteThisThought = async (event) => {
+        const newThoughts = await deleteThought(userId, event.target.parentNode.textContent.replace(/🗑/g, ''))
+        setAllThoughts(newThoughts)
+    }
 
-    return(
-        <>
-        </>
+    if(allThoughts['thoughts']) {
+        thoughtList = allThoughts['thoughts'].map((thought, index) =>  {
+            return (
+                <div
+                className='favs-thoughts'
+                    id={`thought${index}`}
+                    key={index}>  
+                   <button onClick={(event) => deleteThisThought(event)}>🗑</button>
+                   {thought} 
+                </div>
+                )
+        })
+        allThoughts['thoughts'].forEach((thought) => console.log(thought.thisThought))
+    }
+
+    return (
+
+            <div id='thoughtList'>
+                <h4>Your thoughts</h4>
+                {thoughtList} 
+            </div>
     )
 }
+export default Thoughts

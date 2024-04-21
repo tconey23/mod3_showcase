@@ -1,23 +1,30 @@
 import React, { useState } from 'react';
 import './ThoughtBox.css';
-import { postThought } from '../../ApiCalls';
-import { Link } from 'react-router-dom';
+import { postThought, getFav } from '../../ApiCalls';
+import { Link, useNavigate } from 'react-router-dom';
 import Login from '../Login/Login';
 import { useGlobalProp } from '../../index';
 
-const ThoughtBox = ({ userData, onUserChange }) =>  {
-    const [thisThought, setThought] = useState('');
-    const { selectedUser } = useGlobalProp()
+const ThoughtBox = () =>  {
+
+    const { selectedUser, userId, thisThought, setThought, setLoggedIn, setAllThoughts } = useGlobalProp()
+
+    const navigate = useNavigate()
+
     const addThought = event =>  {
         event.preventDefault();
-        const userId = 1;
-        const newThought = {
-            id: Date.now(),
-            thisThought,
-        };
-        postThought(userId, newThought);
-        clearForm();
-    };
+        fetchThoughts()
+        const newThought = thisThought
+        postThought(userId, newThought)
+        clearForm()
+    }
+
+    const fetchThoughts = async () => {
+        const thoughtResp = await getFav(userId)
+        setAllThoughts(thoughtResp)
+        setLoggedIn(true)
+        navigate(`/home`); 
+        }
 
     const clearForm = () =>  {
         setThought('');

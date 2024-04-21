@@ -26,6 +26,7 @@ aside{
     padding: 0 10px;
     justify-content: flex-start;
     align-items: center;
+    overflow: hidden;
     #currentUser{
         color: white;
         font-size: 20px;
@@ -49,13 +50,23 @@ aside{
         }
     }
 
+    #animContainer{
+        height: 100%;
+        width: 100%;
+    }
+
+    .favs-thoughts{
+        color:white;
+    }
+
     #favQuotes{
         margin-top: 0px;
         overflow: auto;
-        height: 75%;
+        min-height: 300px;
     #favoriteQuotes{
         overflow-y: overlay;
         overflow-x: hidden;
+        height:500px;
         div{
             color: white;
             text-wrap: balance;
@@ -90,4 +101,19 @@ aside{
     z-index: 20;
     flex-wrap: nowrap;
     justify-content: center;
+}
+
+#thoughtList{
+    margin-top: 0px;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    button {
+        background: #ffffff00;
+        border: none;
+        &:hover{
+            scale: 1.10;
+            cursor: pointer;
+        }
+    }
 }

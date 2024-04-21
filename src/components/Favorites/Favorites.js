@@ -12,22 +12,25 @@ const Favorites = () =>  {
         const newFavs = await deleteFavoriteQuote(userId, event.target.parentNode.textContent.replace(/🗑/g, ''))
         setFavorites(newFavs)
     }
-    console.log(favorites['favorite quotes'])
     if(favorites['favorite quotes']) {
         favoriteQuotes = favorites['favorite quotes'].map((fav, index) =>  {
             return (
                 <div
+                className='favs-thoughts'
                     id={`fav${index}`}
                     key={index}>  
                    <button onClick={(event) => deleteMessage(event)}>🗑</button>
                    {fav} 
                 </div>
                 )
-        })
+        }) 
+        favorites['favorite quotes'].forEach((fav) => console.log(fav))
+
     }
 
     return (
         <div id='favoriteQuotes'>
+            <h4>Your Favorite Messages</h4>
             {favoriteQuotes}
         </div>
     )

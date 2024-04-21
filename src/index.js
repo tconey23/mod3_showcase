@@ -14,6 +14,9 @@ const GlobalPropProvider = ({ children }) => {
   const [favorites, setFavorites] = useState();
   const [activities, setActivities] = useState();
   const [affirmation, setAffirmation] = useState();
+  const [thisThought, setThought] = useState();
+  const [allThoughts, setAllThoughts] = useState('');
+  const [loggedIn, setLoggedIn] = useState ('')
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -42,7 +45,13 @@ const GlobalPropProvider = ({ children }) => {
     setActivities,
     handleUserChange,
     setAffirmation,
-    affirmation
+    affirmation,
+    thisThought, 
+    setThought,
+    allThoughts,
+    setAllThoughts,
+    setLoggedIn,
+    loggedIn
   };
 
   return (

@@ -5,16 +5,44 @@ import { postFavoriteQuote, getMessage } from '../../ApiCalls';
 import FavoriteSVG from '../../assets/gradient_heart';
 import RefreshSVG from '../../assets/refresh'
 import Favorites from '../Favorites/Favorites';
+import Thoughts from '../Thoughts/Thoughts'
 import Error from '../Error/Error';
 import { useGlobalProp } from '../../index';
+import { motion, AnimatePresence } from 'framer-motion';
+
+
+const variants = {
+  enter: (direction) => ({
+    y: 300, // Start from the bottom of the container
+    opacity: 0
+  }),
+  center: {
+    y: 0, // End at the top of the container
+    opacity: 1
+  },
+  exit: (direction) => ({
+    y: direction < 0 ? 300 : -300, // Exit to the bottom or top depending on direction
+    opacity: 0
+  }),
+};
 
 
 function Home({activities, favorites, favHandler, selectedUser}) {
   const [component, renderComponent] = useState()
   const rendComps = 'carousel'
 
+  const [visibleComponent, setVisibleComponent] = useState('thoughts');
+  const [direction, setDirection] = useState(0);
+
+  const toggleComponent = () => {
+    setDirection(direction === 0 ? 1 : 0);
+    setVisibleComponent(visibleComponent === 'thoughts' ? 'favorites' : 'thoughts');
+  };
+
   let userName, userId
   const { affirmation, setAffirmation } = useGlobalProp()
+
+
 
   useEffect(() =>  {
     const selectComponent = () =>  {
@@ -43,24 +71,58 @@ function Home({activities, favorites, favHandler, selectedUser}) {
   }
 
       return (
-          <main>
-            {selectedUser ? (
-              <aside>
-                <p id='currentUser'>{userName}<RefreshSVG onClick={refreshQuote}/></p>
-                <div
-                  id='messages'
+        <main>
+        {selectedUser ? (
+          <aside>
+            <p id='currentUser'>{userName}<RefreshSVG onClick={refreshQuote}/></p>
+            <div id='messages'>
+              {affirmation && <div id='messageText'><FavoriteSVG id="favHeart" onClick={addFavoriteMessage}/>{affirmation}</div>}
+            </div>
+            <div id="animContainer">
+            <AnimatePresence initial={false} custom={direction}>
+              {visibleComponent === 'favorites' && (
+                <motion.div
+                id='favQuotes'
+                  key="favorites"
+                  custom={direction}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    x: { type: "spring", stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.2 }
+                  }}
                 >
-                  {affirmation && <div id='messageText'><FavoriteSVG id="favHeart" onClick={addFavoriteMessage}/>{affirmation}</div>}
-                </div>
-                <div id='favQuotes'>
-                  <Favorites favorites={favorites}/>
-                </div>
-              </aside>
-            ) : (
-              <Error errorType={'login_lost'}/>
-            )}
-            <Outlet />
-          </main>
+                  <Favorites />
+                </motion.div>
+              )}
+              {visibleComponent === 'thoughts' && (
+                <motion.div
+                  id='thoughtList' 
+                  key="thoughts"
+                  custom={direction}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    x: { type: "spring", stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.2 }
+                  }}
+                >
+                  <Thoughts />
+                </motion.div>
+              )}
+            </AnimatePresence>
+            </div>
+            <button onClick={toggleComponent}>Toggle Views</button>
+          </aside>
+        ) : (
+          <Error errorType={'login_lost'}/>
+        )}
+        <Outlet />
+      </main>
       );
 }
 
