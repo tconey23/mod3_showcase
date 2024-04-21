@@ -1,84 +1,92 @@
-import './Home.css'
-import React, { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
-import { postFavoriteQuote, getMessage } from '../../ApiCalls';
-import FavoriteSVG from '../../assets/gradient_heart';
-import RefreshSVG from '../../assets/refresh'
-import Favorites from '../Favorites/Favorites';
-import Thoughts from '../Thoughts/Thoughts'
-import Error from '../Error/Error';
-import { useGlobalProp } from '../../index';
-import { motion, AnimatePresence } from 'framer-motion';
-import PropTypes from 'prop-types'
+import "./Home.css";
+import React, { useState, useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import { postFavoriteQuote, getMessage } from "../../ApiCalls";
+import FavoriteSVG from "../../assets/gradient_heart";
+import RefreshSVG from "../../assets/refresh";
+import Favorites from "../Favorites/Favorites";
+import Thoughts from "../Thoughts/Thoughts";
+import Error from "../Error/Error";
+import { useGlobalProp } from "../../index";
+import { motion, AnimatePresence } from "framer-motion";
+import PropTypes from "prop-types";
 
 const variants = {
   enter: (direction) => ({
-    y: 300, 
-    opacity: 0
+    y: 300,
+    opacity: 0,
   }),
   center: {
-    y: 0, 
-    opacity: 1
+    y: 0,
+    opacity: 1,
   },
   exit: (direction) => ({
-    y: direction < 0 ? 300 : -300, 
-    opacity: 0
+    y: direction < 0 ? 300 : -300,
+    opacity: 0,
   }),
 };
 
 function Home({ favHandler, selectedUser }) {
+  const [component, renderComponent] = useState();
+  const rendComps = "carousel";
 
-  const [component, renderComponent] = useState()
-  const rendComps = 'carousel'
-
-  const [visibleComponent, setVisibleComponent] = useState('thoughts');
+  const [visibleComponent, setVisibleComponent] = useState("thoughts");
   const [direction, setDirection] = useState(0);
 
   const toggleComponent = () => {
     setDirection(direction === 0 ? 1 : 0);
-    setVisibleComponent(visibleComponent === 'thoughts' ? 'favorites' : 'thoughts');
+    setVisibleComponent(
+      visibleComponent === "thoughts" ? "favorites" : "thoughts",
+    );
   };
 
-  let userName, userId
-  const { affirmation, setAffirmation } = useGlobalProp()
+  let userName, userId;
+  const { affirmation, setAffirmation } = useGlobalProp();
 
-  useEffect(() =>  {
-    const selectComponent = () =>  {
-      renderComponent(rendComps)
-    }  
-    selectComponent()
-  }, [])
+  useEffect(() => {
+    const selectComponent = () => {
+      renderComponent(rendComps);
+    };
+    selectComponent();
+  }, []);
 
   const refreshQuote = async () => {
-    const message = await getMessage()
-    const content = message.choices[0].message.content
-    setAffirmation(content)
+    const message = await getMessage();
+    const content = message.choices[0].message.content;
+    setAffirmation(content);
+  };
+
+  if (selectedUser) {
+    userName = selectedUser.split(",")[1];
+    userId = selectedUser.split(",")[0];
   }
 
-
- if(selectedUser){
-  userName = selectedUser.split(',')[1]
-  userId = selectedUser.split(',')[0]
-}
-
-  const addFavoriteMessage = async () =>  {
-    await postFavoriteQuote(userId, affirmation)
-    refreshQuote()
-    favHandler()
-  }
-      return (
-        <main>
-        {selectedUser ? (
-          <aside>
-            <p id='currentUser'>{userName}<RefreshSVG onClick={refreshQuote}/></p>
-            <div id='messages'>
-              {affirmation && <div id='messageText'><FavoriteSVG id="favHeart" onClick={addFavoriteMessage}/>{affirmation}</div>}
-            </div>
-            <div id="animContainer">
+  const addFavoriteMessage = async () => {
+    await postFavoriteQuote(userId, affirmation);
+    refreshQuote();
+    favHandler();
+  };
+  return (
+    <main>
+      {selectedUser ? (
+        <aside>
+          <p id="currentUser">
+            {userName}
+            <RefreshSVG onClick={refreshQuote} />
+          </p>
+          <div id="messages">
+            {affirmation && (
+              <div id="messageText">
+                <FavoriteSVG id="favHeart" onClick={addFavoriteMessage} />
+                {affirmation}
+              </div>
+            )}
+          </div>
+          <div id="animContainer">
             <AnimatePresence initial={false} custom={direction}>
-              {visibleComponent === 'favorites' && (
+              {visibleComponent === "favorites" && (
                 <motion.div
-                id='favQuotes'
+                  id="favQuotes"
                   key="favorites"
                   custom={direction}
                   variants={variants}
@@ -87,15 +95,15 @@ function Home({ favHandler, selectedUser }) {
                   exit="exit"
                   transition={{
                     x: { type: "spring", stiffness: 300, damping: 30 },
-                    opacity: { duration: 0.2 }
+                    opacity: { duration: 0.2 },
                   }}
                 >
                   <Favorites />
                 </motion.div>
               )}
-              {visibleComponent === 'thoughts' && (
+              {visibleComponent === "thoughts" && (
                 <motion.div
-                  id='thoughtList' 
+                  id="thoughtList"
                   key="thoughts"
                   custom={direction}
                   variants={variants}
@@ -104,27 +112,27 @@ function Home({ favHandler, selectedUser }) {
                   exit="exit"
                   transition={{
                     x: { type: "spring", stiffness: 300, damping: 30 },
-                    opacity: { duration: 0.2 }
+                    opacity: { duration: 0.2 },
                   }}
                 >
                   <Thoughts />
                 </motion.div>
               )}
             </AnimatePresence>
-            </div>
-            <button onClick={toggleComponent}>Toggle Views</button>
-          </aside>
-        ) : (
-          <Error errorType={'login_lost'}/>
-        )}
-        <Outlet />
-      </main>
-      );
+          </div>
+          <button onClick={toggleComponent}>Toggle Views</button>
+        </aside>
+      ) : (
+        <Error errorType={"login_lost"} />
+      )}
+      <Outlet />
+    </main>
+  );
 }
 
-export default Home
+export default Home;
 
 Home.propTypes = {
   selectedUser: PropTypes.string.isRequired,
-  favHandler: PropTypes.func.isRequired
-}
+  favHandler: PropTypes.func.isRequired,
+};
