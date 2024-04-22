@@ -65,6 +65,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <header className="App-header">
+          <h1>Calming Corner</h1>
           <NavLink id="headerLinks" to="/home">
             Home
           </NavLink>
