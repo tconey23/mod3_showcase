@@ -1,46 +1,45 @@
-import React from 'react';
-import { useGlobalProp } from '../../index';
-import { deleteFavoriteQuote } from '../../ApiCalls';
-import './Favorites.css'
-import PropTypes from 'prop-types'
+import React, { useEffect, useState } from "react";
+import { useGlobalProp } from "../../index";
+import { deleteFavoriteQuote } from "../../ApiCalls";
+import "./Favorites.css";
+import PropTypes from "prop-types";
 
-const Favorites = () =>  {
+const Favorites = () => {
+  const { favorites, setFavorites, selectedUser } = useGlobalProp();
+  const [favoriteQuotes, setFavoriteQuotes] = useState([]);
 
-    let favoriteQuotes
-    const { favorites, userId, setFavorites } = useGlobalProp()
-
-    const deleteMessage = async (event) => {
-        const newFavs = await deleteFavoriteQuote(userId, event.target.parentNode.textContent.replace(/🗑/g, ''))
-        setFavorites(newFavs)
-    }
-    if(favorites['favorite quotes']) {
-        favoriteQuotes = favorites['favorite quotes'].map((fav, index) =>  {
-            return (
-                <div
-                className='favs-thoughts'
-                    id={`fav${index}`}
-                    key={index}>  
-                   <button onClick={(event) => deleteMessage(event)}>🗑</button>
-                   {fav} 
-                </div>
-                )
-        }) 
-        favorites['favorite quotes'].forEach((fav) => console.log(fav))
-
-    }
-
-    return (
-        <div id='favoriteQuotes'>
-            <h4>Your Favorite Messages</h4>
-            {favoriteQuotes}
+  useEffect(() => {
+    if (favorites) {
+      const updatedFavoriteQuotes = favorites.map((fav, index) => (
+        <div className="favs-thoughts" id={fav.id} key={fav.id}>
+          <button onClick={(event) => deleteMessage(event)}>🗑</button>
+          {fav.message}
         </div>
-    )
-}
+      ));
+      setFavoriteQuotes(updatedFavoriteQuotes);
+    }
+  }, [favorites]);
 
-export default Favorites
+  const deleteMessage = async (event) => {
+
+    const msgId = parseInt(event.target.parentNode.id)
+    const userId = selectedUser.id
+    const updatedFavorites = await deleteFavoriteQuote(msgId, userId)
+    setFavorites(updatedFavorites['messages'])
+  };
+
+  return (
+    <div id="favoriteQuotes">
+      <h4>Your Favorite Messages</h4>
+      {favoriteQuotes}
+    </div>
+  );
+};
+
+export default Favorites;
 
 Favorites.propTypes = {
-    favorites: PropTypes.array,
-    activities: PropTypes.array,
-    userId: PropTypes.number,
-  }
+  favorites: PropTypes.array,
+  activities: PropTypes.array,
+  userId: PropTypes.number,
+};

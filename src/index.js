@@ -1,36 +1,28 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { getUsers } from './ApiCalls'
+import React, { createContext, useContext, useState, useEffect } from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import { getUserInfo } from "./ApiCalls";
 
 const GlobalPropContext = createContext();
 
 const GlobalPropProvider = ({ children }) => {
   const [userData, setUsers] = useState();
   const [selectedUser, setSelectedUser] = useState();
-  const [userId, setUserId] = useState('');
   const [favorites, setFavorites] = useState();
   const [activities, setActivities] = useState();
   const [affirmation, setAffirmation] = useState();
   const [thisThought, setThought] = useState();
-  const [allThoughts, setAllThoughts] = useState('');
-  const [loggedIn, setLoggedIn] = useState ('')
+  const [allThoughts, setAllThoughts] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const userList = await getUsers();
+      const userList = await getUserInfo();
       setUsers(userList);
     };
     fetchUsers();
   }, []);
-
-  const handleUserChange = (user) => {
-    const userParts = user.split(',');
-    setUserId(userParts[0]);
-    setSelectedUser(userParts[1]);
-  };
 
   const globalPropValue = {
     favorites,
@@ -39,19 +31,16 @@ const GlobalPropProvider = ({ children }) => {
     setSelectedUser,
     userData,
     setUsers,
-    userId,
-    setUserId,
     activities,
     setActivities,
-    handleUserChange,
     setAffirmation,
     affirmation,
-    thisThought, 
+    thisThought,
     setThought,
     allThoughts,
     setAllThoughts,
     setLoggedIn,
-    loggedIn
+    loggedIn,
   };
 
   return (
@@ -63,11 +52,11 @@ const GlobalPropProvider = ({ children }) => {
 
 export const useGlobalProp = () => useContext(GlobalPropContext);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <GlobalPropProvider>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </GlobalPropProvider>
+  </GlobalPropProvider>,
 );

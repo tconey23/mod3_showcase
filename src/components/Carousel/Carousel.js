@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import Slide from "../Slides/Slides";
 import { useGlobalProp } from "../../index";
 import "./Carousel.css";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 const durations = [2.5, 3, 3.2, 2, 1.8];
 const delays = [0.1, 0, 0.5, 0.9, 0.3];
@@ -64,4 +64,4 @@ export default Carousel;
 
 Carousel.propTypes = {
   activities: PropTypes.array,
-}
+};

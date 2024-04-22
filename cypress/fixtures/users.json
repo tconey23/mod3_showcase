@@ -1,39 +1,80 @@
 [
-    {
-      "id": "1",
-      "name": "Tom",
-      "account type": "parent",
-      "stats": [],
-      "favorite quotes": [        
-      "I give myself permission to do what is right for me",
-      "You got this",
-      "You're doing a great job",
-      "Struggling is part of learning",
-      "You'll find a way",
-      "I know you'll sort it out",
-      "You're resourceful and clever"],
-      "favorite activities": [],
-      "thoughts": [
-          "Happy"
-      ]
-    },
-    {
-      "id": "2",
-      "name": "Max",
-      "account type": "child",
-      "stats": [],
-      "favorite quotes": [
-        "I give myself permission to do what is right for me",
-        "You got this",
-        "You're doing a great job",
-        "Struggling is part of learning",
-        "You'll find a way",
-        "I know you'll sort it out",
-        "You're resourceful and clever"
-      ],
-      "favorite activities": [],
-      "thoughts": [
-        "Happy"
-      ]
-    }
+  {
+    "id": "1",
+    "name": "Tom",
+    "account type": "parent",
+    "stats": [],
+    "messages": [
+      {
+        "id": 1713744189999,
+        "message": "\"You are smart, kind, and capable of achieving anything you set your mind to.\""
+      },
+      {
+        "id": 1713744218074,
+        "message": "\"You are kind, brave, and capable of achieving your dreams!\""
+      }
+    ],
+    "favorite activities": [],
+    "thoughts": [
+      {
+        "id": 1713743584526,
+        "thought": "I am feeling happy"
+      },
+      {
+        "id": 1713743669681,
+        "thought": "I am feeling happy"
+      },
+      {
+        "id": 1713743679504,
+        "thought": "I am feeling happy"
+      },
+      {
+        "id": 1713743717320,
+        "thought": "I am feeling happy"
+      },
+      {
+        "id": 1713743801785,
+        "thought": "I am feeling happy"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Max",
+    "account type": "child",
+    "stats": [],
+    "messages": [
+      {
+        "id": 1713742766194,
+        "message": "\"You are capable of achieving anything you set your mind to!\""
+      },
+      {
+        "id": 1713743000296,
+        "message": "You are capable of achieving amazing things!"
+      },
+      {
+        "id": 1713743006443,
+        "message": "You are strong, smart, and capable of achieving anything you set your mind to!"
+      },
+      {
+        "id": 1713743009810,
+        "message": "\"You are kind, you are smart, you are important. Keep shining bright, little one!\""
+      },
+      {
+        "id": 1713744136565,
+        "message": "This is a positive affirmation for a child."
+      }
+    ],
+    "favorite activities": [],
+    "thoughts": [
+      {
+        "id": 1713742619425,
+        "thought": "errgrgrrgrgrgrgrgr"
+      },
+      {
+        "id": 1713742685389,
+        "thought": "home"
+      }
+    ]
+  }
 ]

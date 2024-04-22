@@ -29,10 +29,14 @@
     background:mediumpurple;
     border: inset 2px black;
   }
+
 }
 
-.active{
-  text-decoration: underline;
+.active {
+  text-decoration: underline !important;
+  &:hover{
+    cursor:not-allowed;
+  }
 }
 
 
