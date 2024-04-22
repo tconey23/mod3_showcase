@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Calming Corner: Interactive Activities for Children
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[See it in action here!](https://mod3-showcase.vercel.app/)
 
-## Available Scripts
+## Description
+Calming Corner is an interactive application designed to help children under 10 years old who struggle with self-regulating emotions. While its primary audience is children, anyone can benefit from its engaging activities. 
+The app features a variety of interactive activities aimed at promoting calmness and emotional regulation.
 
-In the project directory, you can run:
+One of the key features of Calming Corner is its digital fidget spinner, offering three different style options to suit individual preferences. 
+This interactive spinner provides a soothing experience, allowing users to focus their attention and reduce anxiety.
 
-### `npm start`
+Another activity included in Calming Corner is a physics-based game where users can manipulate small 2D orbs and watch them interact in a simulated environment. 
+By crashing these orbs together, users can engage in a fun and calming activity that encourages relaxation and mindfulness.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Calming Corner strives to provide children with enjoyable tools to manage their emotions effectively, promoting a sense of calmness and well-being in their daily lives.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Table of Contents
+- [Installation](#installation)
+- [Additional features](#additional-features)
+- [Technologies used](#technologies-used)
+- [Future planned development](#future-planned-development)
 
-### `npm test`
+## Installation
+- Fork this repository
+- Clone down to your local machine
+- Run the following commands
+```bash
+npm install
+npm start
+```
+- The app should open on localhost:3000
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Additional features
+- AI-generated positive messages
+  Messages can be favorited, and deleted.
+  Favorite messages persist on a external server.
+- Option to add user thoughts / feelings in order to log in to the app.
+  Yhis option can also be skipped.
 
-### `npm run build`
+## Technologies used
+- React
+- React router
+- Matter.js
+- Framer-Motion
+- Cypress unit testing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  ## Future planned development
+- Ability to manipulate thoughts similarly to favorite messages.
+- Additional activities including a zen garden and waveform generator.
+- Separate parent / child account info.
+- Optional app usage metrics
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
