@@ -20,6 +20,10 @@ Calming Corner strives to provide children with enjoyable tools to manage their 
 - [Technologies used](#technologies-used)
 - [Future planned development](#future-planned-development)
 
+- ![Alt Text][(https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHF5dzc4Z3d0ZWYzd2tqem9xZHpiOWdsdXk0NWV5OGVrN2FlenNxYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Lv2m6zvZ5qwHRyX79Z/giphy.gif)]
+
+- <iframe src="https://giphy.com/embed/Lv2m6zvZ5qwHRyX79Z" width="480" height="198" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/Lv2m6zvZ5qwHRyX79Z">via GIPHY</a></p>
+
 ## Installation
 - Fork this repository
 - Clone down to your local machine
@@ -43,6 +47,9 @@ npm start
 - Matter.js
 - Framer-Motion
 - Cypress unit testing
+- Express
+- Front End deployed on Vercel
+- Back end deployed on Heroku
 
   ## Future planned development
 - Ability to manipulate thoughts similarly to favorite messages.
