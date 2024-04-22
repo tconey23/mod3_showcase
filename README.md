@@ -15,7 +15,7 @@ By crashing these orbs together, users can engage in a fun and calming activity 
 Calming Corner strives to provide children with enjoyable tools to manage their emotions effectively, promoting a sense of calmness and well-being in their daily lives.
 
 ## Table of Contents
-- [Installation](#installation)
+- [Front End Installation](#installation)
 - [Additional features](#additional-features)
 - [Technologies used](#technologies-used)
 - [Future planned development](#future-planned-development)
@@ -26,7 +26,7 @@ Calming Corner strives to provide children with enjoyable tools to manage their 
   ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3g5MWY4bHpzMXI5NG8xbjBodnA0aHA1YnBpbmlyem8zdm53dHBuMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rPNsnPTauG3m9lU7MU/giphy.gif)
 
 
-## Installation
+## Front End Installation
 - Fork this repository
 - Clone down to your local machine
 - Run the following commands
@@ -35,6 +35,16 @@ npm install
 npm start
 ```
 - The app should open on localhost:3000
+
+## Back End Installation
+- Fork this [Repository](https://github.com/tconey23/backendServerTest)
+- Clone down to your local machine
+- Run the following commands
+```bash
+npm install
+node server.js  (or nodemon server.js)
+```
+- The server should run on localhost:3001
 
 ## Additional features
 - AI-generated positive messages
