@@ -20,9 +20,11 @@ Calming Corner strives to provide children with enjoyable tools to manage their 
 - [Technologies used](#technologies-used)
 - [Future planned development](#future-planned-development)
 
-- ![Alt Text][(https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHF5dzc4Z3d0ZWYzd2tqem9xZHpiOWdsdXk0NWV5OGVrN2FlenNxYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Lv2m6zvZ5qwHRyX79Z/giphy.gif)]
 
-- <iframe src="https://giphy.com/embed/Lv2m6zvZ5qwHRyX79Z" width="480" height="198" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/Lv2m6zvZ5qwHRyX79Z">via GIPHY</a></p>
+ ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWdnNHV2cmFnbnE4ZmxrNm80OWlkZnFyN3p1M2Y0MmRtMGsydTMyaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2JBwaImwttvmZTmHQ5/giphy.gif)
+ ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHF5dzc4Z3d0ZWYzd2tqem9xZHpiOWdsdXk0NWV5OGVrN2FlenNxYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Lv2m6zvZ5qwHRyX79Z/giphy.gif)
+  ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3g5MWY4bHpzMXI5NG8xbjBodnA0aHA1YnBpbmlyem8zdm53dHBuMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rPNsnPTauG3m9lU7MU/giphy.gif)
+
 
 ## Installation
 - Fork this repository
