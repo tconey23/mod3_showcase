@@ -28,7 +28,6 @@ const variants = {
 
 function Home() {
   const { affirmation, setAffirmation, selectedUser, setFavorites, favorites } = useGlobalProp();
-  const rendComps = "carousel";
 
   const [visibleComponent, setVisibleComponent] = useState("favorites");
   const [direction, setDirection] = useState(0);

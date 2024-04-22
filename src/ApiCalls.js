@@ -117,6 +117,7 @@ const postFavoriteQuote = async (userId, favoriteMessage) => {
 };
 
 const deleteFavoriteQuote = async (msgId, userId) => {
+  console.log(msgId, userId)
   try {
     const response = await fetch(
       `https://calmingbe-850b1d5e55e9.herokuapp.com/api/v1/data/users/${userId}/messages`,

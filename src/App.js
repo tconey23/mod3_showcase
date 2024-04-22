@@ -21,6 +21,7 @@ function App() {
     setAffirmation,
     setLoggedIn,
     setAllThoughts,
+    favorites
   } = useGlobalProp();
 
   const logOut = () => {
@@ -46,6 +47,7 @@ function App() {
       setFavorites(selectedUser['messages'])
       setAllThoughts(selectedUser['thoughts'])
       setLoggedIn(true)
+      console.log(favorites)
     }
   }, [selectedUser]);
 
