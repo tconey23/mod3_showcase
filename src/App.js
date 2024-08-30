@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
 import Home from "./components/Home/Home";
 import ThoughtBox from "./components/ThoughtBox/ThoughtBox";
@@ -12,6 +12,13 @@ import Carousel from "./components/Carousel/Carousel";
 import PropTypes from "prop-types";
 
 function App() {
+
+  const [toggleAside, setToggleAside] = useState(false)
+
+  useEffect(() => {
+    window.innerWidth > 430 ? setToggleAside(true) : setToggleAside(false)
+  }, [])
+  
   const {
     setFavorites,
     selectedUser,
@@ -32,7 +39,8 @@ function App() {
 
   const fetchMessage = async () => {
     const message = await getMessage();
-    const content = message.choices[0].message.content;
+    let content
+    if(message){content = message.choices[0].message.content}
     setAffirmation(content);
   };
 
@@ -61,24 +69,37 @@ function App() {
     }
   }, []);
 
+  const expandAside = () => {
+    setToggleAside(prev => (
+      prev === true ? false : true
+    ))
+  }
+
+  useEffect(() => {
+    console.log(toggleAside)
+  }, [toggleAside])
+
   return (
     <BrowserRouter>
       <div className="App">
         <header className="App-header">
           <h1>Calming Corner</h1>
-          <NavLink id="headerLinks" to="/home">
-            Home
-          </NavLink>
-          <NavLink id="headerLinks" to="/" onClick={logOut}>
-            Log Out
-          </NavLink>
+          <div className="link-wrapper">
+            <i className="fi fi-br-menu-dots-vertical" onClick={()=>expandAside()}></i>
+            <NavLink id="headerLinks" to="/home">
+              Home
+            </NavLink>
+            <NavLink id="headerLinks" to="/" onClick={logOut}>
+              Log Out
+            </NavLink>
+          </div>
         </header>
         <Routes>
-          <Route path="/" element={<ThoughtBox />} />
+           <Route path="/" element={<ThoughtBox />} />
           <Route
             path="/home"
             element={
-              <Home />
+              <Home toggle={toggleAside}/>
             }
           >
             <Route path="" element={<Carousel />}></Route>

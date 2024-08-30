@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 
-export default function PropFidget() {
+export default function PropFidget({size}) {
     const ref = useRef(null);
     const [constraints, setConstraints] = useState({ top: 0, right: 0, bottom: 0, left: 0 });
     const controls = useAnimation(); // useAnimation hook for more control over animations
@@ -42,7 +42,7 @@ export default function PropFidget() {
         <motion.svg
             ref={ref}
             drag
-            style={{ cursor: 'grab' }}
+            style={{ cursor: 'grab', scale: size }}
             dragConstraints={constraints}
             animate={controls}
             onClick={handleSpin}

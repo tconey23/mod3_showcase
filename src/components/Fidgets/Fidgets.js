@@ -6,6 +6,7 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import propFidgetPNG from "../../assets/g396.png";
 import yinyangFidgetPNG from "../../assets/g127.png";
 import flowerFidgetPNG from "../../assets/g665.png";
+import { useEffect } from "react";
 import "./Fidgets.css";
 
 const dropdownVariants = {
@@ -17,6 +18,13 @@ function Fidgets() {
   const [selectedFidget, setSelectedFidget] = useState();
   const [fidgetName, setFidgetName] = useState();
   const [isOpen, setIsOpen] = useState(false);
+  const [size, setSize] = useState(1)
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    console.log(window.innerWidth)
+    window.innerWidth <= 430 && setSize(0.5)
+  }, [windowWidth, window.innerWidth])
 
   const handleFidgetChange = (event) => {
     const selectedValue = event.target.id;
@@ -27,15 +35,15 @@ function Fidgets() {
   const switchFidget = (selectedValue) => {
     switch (selectedValue) {
       case "PropFidget":
-        setSelectedFidget(<PropFidget id="fidget" />);
+        setSelectedFidget(<PropFidget id="fidget" size={size}/>);
         setFidgetName(selectedValue);
         break;
       case "YinyangFidget":
-        setSelectedFidget(<YinyangFidget id="fidget" />);
+        setSelectedFidget(<YinyangFidget id="fidget" size={size}/>);
         setFidgetName(selectedValue);
         break;
       case "FlowerFidget":
-        setSelectedFidget(<FlowerFidget id="fidget" />);
+        setSelectedFidget(<FlowerFidget id="fidget" size={size}/>);
         setFidgetName(selectedValue);
         break;
       default:
@@ -117,7 +125,7 @@ function Fidgets() {
         </div>
       </section>
       <div id="fidgetContainer">
-        {selectedFidget && <motion.div>{selectedFidget}</motion.div>}
+        {selectedFidget && <motion.div className="fidget-wrapper">{selectedFidget}</motion.div>}
       </div>
     </section>
   );

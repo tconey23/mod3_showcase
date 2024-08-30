@@ -49,24 +49,20 @@ form {
     }
 }
 
-/* .dropdown {
-    position: relative;
-    display: inline-block;
-  } */
-  
-  .dropdown-toggle {
-    background-color: #f1f1f1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    height: 0px;
-    align-content: center;
-    font-size: 12px;
-    min-width: 62px;
-        &:hover{
-            cursor: pointer;
-            background-color: #50545a;
-        }
+   .dropdown-toggle {
+        background-color: #f1f1f1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        height: 0px;
+        align-items: center;
+        font-size: 12px;
+        min-width: 62px;
+        display: flex !important;
+            &:hover{
+                cursor: pointer;
+                background-color: #50545a;
+            }
     }
   
   .dropdown-menu {
@@ -96,3 +92,10 @@ form {
   h3{
     color: white;
   }
+
+  .dropdown {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}

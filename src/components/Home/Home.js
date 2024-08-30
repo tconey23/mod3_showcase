@@ -26,9 +26,9 @@ const variants = {
   }),
 };
 
-function Home() {
+function Home({toggle}) {
+  
   const { affirmation, setAffirmation, selectedUser, setFavorites, favorites } = useGlobalProp();
-
   const [visibleComponent, setVisibleComponent] = useState("favorites");
   const [direction, setDirection] = useState(0);
 
@@ -53,12 +53,13 @@ function Home() {
       refreshQuote();
       const updatedFavs = await postFavoriteQuote(selectedUser.id, favoriteMessage);
       await setFavorites(updatedFavs['messages']);
+      
   };
 
   return (
     <main>
-      {selectedUser ? (
-        <aside>
+      {selectedUser && toggle ? (
+          <aside>
           <p id="currentUser">
             {selectedUser && selectedUser.name}
             <RefreshSVG onClick={refreshQuote} />
@@ -110,7 +111,7 @@ function Home() {
             </AnimatePresence>
           </div>
           <button onClick={toggleComponent}>Toggle Views</button>
-        </aside>
+        </aside> 
       ) : (
         <Error errorType={"login_lost"} />
       )}

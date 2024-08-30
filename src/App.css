@@ -1,3 +1,5 @@
+@import "~@flaticon/flaticon-uicons/css/all/all";
+
 .App {
   text-align: center;
   background-color: #1e1e1e;
@@ -18,13 +20,14 @@
   text-decoration: none;
   color: black;
   border: outset 2px black;
-  margin-top: 30px !important;
+  margin-top: 30px;
   border-radius: 6px;
   margin: 0px 10px;
   background: rgba(144, 97, 255, 0.33);
   height: 30px;
   width: 80px;
   align-content: center;
+  padding: 4px;
   &:hover{
     background:mediumpurple;
     border: inset 2px black;
@@ -94,4 +97,120 @@
   font-size: 84%;
   line-break: auto;
   width: 500px;
+}
+
+.fi{
+  display: none;
+}
+
+#errorHandler{
+  display: none;
+}
+
+@media screen and (min-width: 375px) and (max-width: 500px) {
+  .fi{
+    display: block;
+  }
+  .App {
+    aside{
+      width: 0vw;
+      height: 300px;
+      padding: 0px;
+      position: absolute;
+      background: rgba(0, 0, 0, 0.808);
+      z-index: 100;
+      overflow: scroll;
+      animation: asideToggle 2s ease-in-out both;
+    }
+    #errorHandler {
+      position: absolute;
+      display: none;
+    }
+    header{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .link-wrapper{
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        
+        a{
+          text-decoration: none;
+          color: black;
+          border: outset 2px black;
+          border-radius: 6px;
+          background: rgba(144, 97, 255, 0.33);
+          height: 25px !important;
+          width: 71px !important;
+          align-content: center;
+          margin: 0px 15px 6px 15px !important;
+          font-size: 14px !important;
+        }
+      }
+      h1{
+          font-size: 18px;
+          margin-top: 0px;
+          margin-bottom: 0px;
+          letter-spacing: 5px;
+          font-style: italic;
+      }
+    }
+    main{
+      align-items: center;
+      #draggable{
+        overflow: scroll;
+        margin-top: -32px;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        grid-template-columns: repeat(2, 200px);
+        div{
+          scale: 0.75;
+          width: 200px;
+          height: 200px;
+          #bubble{
+            margin-bottom: 0px;
+            margin-left: 0px;
+          }
+        }
+      }
+    }
+      #fidget-container{
+        .fidget-wrapper{
+          height:100%;
+          width: 100%;
+          #fidget{
+              scale: 0.5 !important;
+          }
+      }
+    }
+  }
+  
+  #thoughtBox {
+    h3{
+      font-size: 13px;
+    }
+    form{
+      scale: 0.8;
+      margin-top: -28px;
+
+      #userSelection {
+        margin-bottom: 24px;
+      }
+    }
+  }
+}
+
+@keyframes asideToggle {
+  0%{
+    width: 0px;
+  }
+  100%{
+    width: 98vw;
+  }
 }

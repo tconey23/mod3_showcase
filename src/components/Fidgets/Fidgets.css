@@ -8,7 +8,7 @@
         background: radial-gradient(ellipse at top, #4c21e675, #00000085), radial-gradient(ellipse at bottom, #9f0c435c, #42000080);
         z-index: 0;
         margin-bottom: 5px;
-        div{
+        .fidget-wrapper{
             height:100%;
             width: 100%;
         }

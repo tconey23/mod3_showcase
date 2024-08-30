@@ -40,7 +40,8 @@ const getMessage = async () => {
     { role: "user", content: "All responses must be appropriate for children" },
     { role: "user", content: "All responses must be positive in nature" },
     { role: "user", content: "Don't include any graphics" },
-    { role: "user", content: "Generate a positive affirmation for a child" },
+    { role: "user", content: "Response should be in the same style as the book 14000 things to be happy about" },
+    { role: "user", content: "Generate one thing to be happy about" },
   ];
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {

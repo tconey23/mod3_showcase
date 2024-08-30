@@ -31,7 +31,7 @@ const Carousel = () => {
                 "opacity(0.50) brightness(1.4) drop-shadow(2px 4px 6px black)",
             }}
             animate={{
-              y: ["0%", "4%", "0%"],
+              y: ["0%", "5%", "0%"],
             }}
             transition={{
               duration: randomDurations[index],
